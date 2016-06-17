@@ -1,10 +1,11 @@
 #!/bin/sh
-#
+
 # Usage: extract <file>
 # Description: extracts archived files / mounts disk images
 # Note: .dmg/hdiutil is Mac OS X-specific.
 #
 # credit: http://nparikh.org/notes/zshrc.txt
+
 extract () {
     if [ -f $1 ]; then
         case $1 in
@@ -27,4 +28,11 @@ extract () {
     else
         echo "'$1' is not a valid file"
     fi
+}
+
+# Usage: cdl <directory>
+# perform cd and then ls
+
+cdl () {
+	cd "$1"; ls;
 }
