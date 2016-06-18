@@ -1,1 +1,7 @@
-export EDITOR='atom'
+# Browser
+if [[ "$OSTYPE" == darwin* ]]; then
+	export BROWSER='open'
+fi
+
+# Editor
+export EDITOR='micro'
