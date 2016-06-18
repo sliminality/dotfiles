@@ -11,6 +11,7 @@ brew 'pandoc'
 brew 'pandoc-citeproc'
 brew 'pandoc-cross-ref'
 brew 'readline'
+brew 'tree'
 brew 'unrar'
 brew 'wget'
 
