@@ -1,8 +1,13 @@
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
 # your project folder that we can `c [tab]` to
-export PROJECTS=~/Code
+export PROJECTS=~/git
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
@@ -21,6 +26,19 @@ for file in ${(M)config_files:#*/path.zsh}
 do
   source $file
 done
+
+# path stuff
+path=(
+  $HOME/.tilde/{bin,sbin}
+  $HOME/.tilde/opt/{bin,sbin}
+  /usr/local/{bin,sbin}
+  /usr/{bin,sbin}
+  /{bin,sbin}
+  /Library/TeX/texbin
+  /usr/local/go/bin
+  /Applications/Racket v6.4/bin
+  $path
+)
 
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
