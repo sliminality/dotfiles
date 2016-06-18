@@ -11,6 +11,9 @@ alias dl="cd ~/Downloads"
 # Automatically list files after cd
 alias cd='cdl'
 
+# Use ccat for syntax highlighted cat
+alias cat='ccat'
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
@@ -48,6 +51,9 @@ alias gc='git commit -m '
 alias gca='git commit -am '
 alias gd='git diff'
 alias go='git checkout '
+
+# Prettyprint path
+alias path='echo $PATH | tr -s ":" "\n"'
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade --all; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update'
