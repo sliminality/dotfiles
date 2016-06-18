@@ -56,4 +56,9 @@ do
   source $file
 done
 
+# List files whenever the working directory is changed
+function chpwd () {
+  ls
+}
+
 unset config_files
