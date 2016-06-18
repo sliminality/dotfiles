@@ -1,0 +1,8 @@
+{
+    "colorscheme": "default",
+    "tabsize": 2,
+    "autoindent": true,
+    "syntax": true,
+    "tabsToSpaces": true,
+    "ruler": true
+}
