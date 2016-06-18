@@ -8,6 +8,9 @@ alias ....='cd ../../..'
 alias d="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 
+# Tree listing of depth 3
+alias tr='tree -L 3'
+
 # Automatically list files after cd
 alias cd='cdl'
 
