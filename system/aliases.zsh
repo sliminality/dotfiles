@@ -26,9 +26,10 @@ alias lsl='ls -hlF'
 
 # List files long with endings, human readable sizes, including hidden files
 alias lsla='ls -halF'
+alias lsal='ls -halF'
 
 # Enable aliases to be sudo'd
-alias sudo='sudo '
+# alias sudo='sudo '
 
 ############################################
 # Visual
@@ -58,7 +59,21 @@ alias g='git'
 alias gs='git status '
 alias ga='git add '
 alias gb='git branch '
-alias gc='git commit -m '
+alias gcamend='git commit --amend'
+alias gcm='git commit -m '
 alias gca='git commit -am '
 alias gd='git diff'
 alias go='git checkout '
+
+############################################
+# Chrome
+############################################
+
+alias google-chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+
+
+############################################
+# SSH
+############################################
+
+alias murphy='ssh scl025@murphy.wot.eecs.northwestern.edu'

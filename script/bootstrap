@@ -156,3 +156,5 @@ mac_setup () {
   echo ''
   echo '  All installed!'
 }
+
+# mac_setup

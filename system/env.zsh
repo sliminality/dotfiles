@@ -4,4 +4,4 @@ if [[ "$OSTYPE" == darwin* ]]; then
 fi
 
 # Editor
-export EDITOR='micro'
+export EDITOR='vim'

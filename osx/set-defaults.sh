@@ -10,8 +10,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
 
-# Disable transparency in the menu bar and elsewhere on Yosemite
-defaults write com.apple.universalaccess reduceTransparency -bool true
+# Play feedback when volume is changed
+defaults write -g 'com.apple.sound.beep.feedback' -bool true
 
 # Use AirDrop over every interface. srsly this should be a default.
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
@@ -67,7 +67,7 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
   Privileges -bool true
 
 # Save screenshots to ~/Pictures/Screenshots
-defaults write com.apple.screencapture location -string "${HOME}/Desktop/Screenshots"
+defaults write com.apple.screencapture location -string "${HOME}/Pictures/Screenshots"
 
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
@@ -76,11 +76,39 @@ defaults write com.apple.screencapture disable-shadow -bool true
 # Keyboard                                                        #
 ###################################################################
 
+# Enable full keyboard access for all controls
+# (e.g. enable Tab in modal dialogs)
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
 # Disable press-and-hold for keys in favor of key repeat.
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Set a really fast key repeat.
 defaults write NSGlobalDomain KeyRepeat -int 0
+
+###################################################################
+# Google Chrome                                                   #
+###################################################################
+
+# Allow installing user scripts via GitHub Gist or Userscripts.org
+defaults write com.google.Chrome ExtensionInstallSources -array "https://gist.githubusercontent.com/" "http://userscripts.org/*"
+defaults write com.google.Chrome.canary ExtensionInstallSources -array "https://gist.githubusercontent.com/" "http://userscripts.org/*"
+
+# Disable the all too sensitive backswipe on trackpads
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
+defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false
+
+# Disable the all too sensitive backswipe on Magic Mouse
+defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool false
+defaults write com.google.Chrome.canary AppleEnableMouseSwipeNavigateWithScrolls -bool false
+
+# Use the system-native print preview dialog
+defaults write com.google.Chrome DisablePrintPreview -bool true
+defaults write com.google.Chrome.canary DisablePrintPreview -bool true
+
+# Expand the print dialog by default
+defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
+defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
 
 ###################################################################
 # Dock, desktop                                                   #
@@ -126,27 +154,21 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
 
 ###################################################################
-# Sublime Text                                                    #
-###################################################################
-
-# Install settings (TODO)
-
-###################################################################
 # Kill apps                                                       #
 ###################################################################
 
-for app in \
-  "Activity Monitor" \
-  "Address Book" \
-  "Calendar" \
-  "Contacts" \
-  "cfprefsd" \
-  "Dock" \
-  "Finder" \
-  "Google Chrome" \
-  "Messages" \
-  "Photos" \
-  "SystemUIServer" \
-  "Terminal"; do
-  killall "${app}" &> /dev/null
-done
+# for app in \
+#   "Activity Monitor" \
+#   "Address Book" \
+#   "Calendar" \
+#   "Contacts" \
+#   "cfprefsd" \
+#   "Dock" \
+#   "Finder" \
+#   "Google Chrome" \
+#   "Messages" \
+#   "Photos" \
+#   "SystemUIServer" \
+#   "Terminal"; do
+#   killall "${app}" &> /dev/null
+# done
