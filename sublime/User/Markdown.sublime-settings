@@ -1,0 +1,8 @@
+{
+	"enable_table_editor": true,
+  "tab_size": 4,
+  "ignored_packages":
+  [
+    "Emmet"
+  ],
+}

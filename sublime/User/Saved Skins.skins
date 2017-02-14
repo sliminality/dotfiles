@@ -1,0 +1,127 @@
+{
+	"Ayu Light":
+	{
+		"Preferences":
+		{
+			"color_scheme": "Packages/User/Color Highlighter/themes/ayu-light.tmTheme",
+			"font_face": "Operator Mono",
+			"font_size": 14,
+			"theme": "ayu-light.sublime-theme"
+		},
+		"SublimeLinter":
+		{
+			"user":
+			{
+				"error_color": "D02000",
+				"gutter_theme": "Packages/SublimeLinter/gutter-themes/Default/Default.gutter-theme",
+				"warning_color": "DDB700"
+			}
+		}
+	},
+	"Ayu Mirage":
+	{
+		"Preferences":
+		{
+			"color_scheme": "Packages/ayu/ayu-mirage.tmTheme",
+			"font_face": "Operator Mono",
+			"font_size": 14,
+			"theme": "ayu-mirage2.sublime-theme"
+		},
+		"SublimeLinter":
+		{
+			"user":
+			{
+				"error_color": "D02000",
+				"gutter_theme": "Packages/SublimeLinter/gutter-themes/Default/Default.gutter-theme",
+				"warning_color": "DDB700"
+			}
+		}
+	},
+	"Enki Dark":
+	{
+		"Preferences":
+		{
+			"color_scheme": "Packages/Enki Theme/scheme/Enki-Aster.tmTheme",
+			"font_face": "Operator Mono",
+			"font_size": 14,
+			"theme": "Enki-Theme.sublime-theme"
+		},
+		"SublimeLinter":
+		{
+			"user":
+			{
+				"error_color": "D02000",
+				"gutter_theme": "Packages/SublimeLinter/gutter-themes/Default/Default.gutter-theme",
+				"warning_color": "DDB700"
+			}
+		}
+	},
+	"Seti":
+	{
+		"Preferences":
+		{
+			"color_scheme": "Packages/Base16 Color Schemes/Themes/base16-seti-ui.tmTheme",
+			"font_face": "Operator Mono",
+			"font_size": 14,
+			"theme": "Seti_orig.sublime-theme"
+		},
+		"SublimeLinter":
+		{
+			"user":
+			{
+				"error_color": "D02000",
+				"gutter_theme": "Packages/SublimeLinter/gutter-themes/Default/Default.gutter-theme",
+				"warning_color": "DDB700"
+			}
+		}
+	},
+	"Spacegray":
+	{
+		"Preferences":
+		{
+			"color_scheme": "Packages/Base16 Color Schemes/Themes/base16-ocean.tmTheme",
+			"font_face": "Operator Mono",
+			"font_size": 14,
+			"theme": "Spacegray.sublime-theme"
+		}
+	},
+	"Spacegray Eighties":
+	{
+		"Preferences":
+		{
+			"color_scheme": "Packages/Base16 Color Schemes/Themes/base16-eighties.tmTheme",
+			"font_face": "Operator Mono",
+			"font_size": 14,
+			"theme": "Spacegray Eighties.sublime-theme"
+		},
+		"SublimeLinter":
+		{
+			"user":
+			{
+				"error_color": "D02000",
+				"gutter_theme": "Packages/SublimeLinter/gutter-themes/Default/Default.gutter-theme",
+				"warning_color": "DDB700"
+			}
+		}
+	},
+	"Spacegray Light":
+	{
+		"Preferences":
+		{
+			"color_scheme": "Packages/Theme - Spacegray/base16-ocean.light.tmTheme",
+			"font_face": "Operator Mono",
+			"font_size": 14,
+			"theme": "Spacegray Light.sublime-theme"
+		}
+	},
+	"enki+ayu":
+	{
+		"Preferences":
+		{
+			"color_scheme": "Packages/ayu/ayu-mirage.tmTheme",
+			"font_face": "Operator Mono",
+			"font_size": 14,
+			"theme": "Enki-Theme.sublime-theme"
+		}
+	}
+}

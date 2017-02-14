@@ -1,0 +1,19 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "rules": {
+    "space-before-function-paren": ["error", "always"],
+    "arrow-parens": ["warn", "always"],
+    "no-magic-numbers": ["error", {
+      "ignore": [0, 1, -1]
+    }],
+    "no-console": "off"
+  },
+  "plugins": [
+    "flowtype"
+  ],
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}

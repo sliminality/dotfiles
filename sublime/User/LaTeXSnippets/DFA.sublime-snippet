@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[
+M = (Q, \Sigma, \delta, q_0, Q_F)
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>\dfa</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope>text.tex.latex</scope> -->
+  <scope>string.other.math</scope>
+</snippet>

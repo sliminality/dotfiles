@@ -1,0 +1,13 @@
+// {
+//   "cmd": ["babel-node," "$file"],
+//   "path": "/usr/local/bin:$PATH", // ENV setting for mac users
+//   "shell": true,
+//   // "selector": "*.js"
+// }
+{
+  "cmd": ["babel-node", "$file"],
+  "selector": "source.js",
+  "path": "/usr/local/bin:$PATH", // ENV setting for mac users
+  // "shell_cmd": true,
+  "quiet": true // get rid of annoying `[Finished in %fs]`
+}

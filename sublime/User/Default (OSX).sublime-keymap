@@ -1,0 +1,196 @@
+[
+  // // Cmd+Shift+; to append semicolon to line end
+  // {
+  //   "keys": ["super+shift+;"],
+  //   "command": "run_macro_file",
+  //   "args": {
+  //     "file": "Packages/User/AppendSemicolon.sublime-macro"
+  //   }
+  // },
+
+  // Add a new key/value pair
+  // {
+  //   "keys": ["super+shift+;"],
+  //   "command": "run_macro_file",
+  //   "args": {
+  //     "file": "Packages/User/AddObjectPair.sublime-macro"
+  //   }
+  // },
+
+  // Eval in REPL
+  { "keys": ["super+r"], "command": "run_macro_file", "args": { "file": "Packages/User/EvalInREPL.sublime-macro" },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.racket" },
+    ]
+  },
+
+  { "keys": ["super+r"], "command": "run_macro_file", "args": { "file": "Packages/User/EvalInREPL.sublime-macro" },
+    "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.elm" }
+    ]
+  },
+
+  { "keys": ["super+shift+r"], "command": "goto_symbol_in_project" },
+
+  // Reindent selection on tab
+  { "keys": ["tab"], "command": "reindent", "context": [
+      { "key": "setting.auto_indent", "operator": "equal", "operand": true },
+      { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": true }
+    ]
+  },
+  { "keys": ["tab"], "command": "lispindent", "context": [
+      { "key": "setting.auto_indent", "operator": "equal", "operand": true },
+      { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": true },
+      { "key": "selector", "operator": "equal", "operand": "source.racket" }
+    ]
+  },
+
+  { "keys": ["'"], "command": "insert_snippet", "args": { "contents": "'" }, "context": [
+      { "key": "selector", "operator": "equal", "operand": "source.racket" }
+    ]
+  },
+
+  // LaTeX dollar sign encapsulation
+  { "keys": ["$"], "command": "insert_snippet", "args": { "contents": "\\$${0:$SELECTION}\\$" }, "context": [
+      { "key": "selector", "operator": "not_equal", "operand": "markup.raw", "match_all": true },
+       // { "key": "following_text", "operator": "not_regex_contains", "operand": "^(?:\t| |\\)|]|\\}|$)", "match_all": true },
+       // { "key": "preceding_text", "operator": "not_regex_contains", "operand": "['a-zA-Z0-9$]$", "match_all": true },
+      { "key": "selector", "operator": "equal", "operand": "text.html.markdown.gfm, text.html.markdown" },
+      { "key": "selector", "operator": "not_equal", "operand": "string.other.math" },
+      { "key": "setting.auto_match_enabled", "operand": true, "operator": "equal" },
+      {"key": "eol_selector", "match_all": true, "operand": "comment.line.percentage", "operator": "not_equal"},
+      {"key": "selection_empty", "match_all": true, "operand": false, "operator": "equal"},
+      { "key": "setting.command_mode", "operand": false, "operator": "equal" }
+    ]
+  },
+
+  {
+    "keys": ["$"],
+    "command": "insert_snippet", "args": {"contents": "\\$$0\\$"},
+    "context": [
+      {"key": "eol_selector", "match_all": true, "operand": "comment.line.percentage", "operator": "not_equal"},
+      {"key": "selection_empty", "match_all": true, "operand": true, "operator": "equal"},
+      { "key": "following_text", "operator": "regex_contains", "operand": "^(?:\t| |,|\\)|]|\\}|$)", "match_all": true },
+       { "key": "preceding_text", "operator": "not_regex_contains", "operand": "['a-zA-Z0-9$]$", "match_all": true },
+      { "key": "selector", "operator": "equal", "operand": "text.html.markdown.gfm, text.html.markdown" },
+      {"key": "setting.auto_match_enabled", "operand": true, "operator": "equal"},
+      {"key": "setting.command_mode", "operand": false, "operator": "equal"}
+    ]
+  },
+
+  { "keys": ["$"], "command": "move", "args": {"by": "characters", "forward": true},
+    "context": [
+      {"key": "following_text", "match_all": true, "operand": "^\\$", "operator": "regex_contains"},
+      {"key": "selection_empty", "match_all": true, "operand": true, "operator": "equal"},
+      { "key": "selector", "operator": "not_equal", "operand": "markup.raw", "match_all": true },
+      // { "key": "selector", "operator": "equal", "operand": "text.html.markdown.gfm, text.html.markdown" },
+      {"key": "selector", "operand": "string.other.math", "operator": "equal"},
+      { "key": "setting.auto_match_enabled", "operand": true, "operator": "equal" },
+      { "key": "setting.command_mode", "operand": false, "operator": "equal" }
+    ]
+  },
+
+  {
+    "keys": ["\\"],
+    "command": "insert_snippet", "args": {"contents": "\\$\\\\$0\\$"},
+    "context": [
+      {"key": "eol_selector", "match_all": true, "operand": "comment.line.percentage", "operator": "not_equal"},
+      {"key": "selection_empty", "match_all": true, "operand": true, "operator": "equal"},
+      { "key": "following_text", "operator": "regex_contains", "operand": "^(?:\t| |\\)|]|\\}|$)", "match_all": true },
+       { "key": "preceding_text", "operator": "not_regex_contains", "operand": "['a-zA-Z0-9$]$", "match_all": true },
+      { "key": "selector", "operator": "equal", "operand": "text.html.markdown.gfm, text.html.markdown" },
+      { "key": "selector", "operator": "not_equal", "operand": "string.other.math" },
+      {"key": "setting.auto_match_enabled", "operand": true, "operator": "equal"},
+      {"key": "setting.command_mode", "operand": false, "operator": "equal"}
+    ]
+  },
+
+  // Bold on Super + Alt + B
+  { "keys": ["super+alt+b"], "command": "run_macro_file", "args": {"file": "Packages/MarkdownEditing/macros/Transform Word - Bold.sublime-macro"}, "context":
+      [
+          { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+          { "key": "selector", "operator": "equal", "operand": "text.html.markdown", "match_all": true }
+      ]
+  },
+  { "keys": ["super+alt+b"], "command": "insert_snippet", "args": {"contents": "${MD_BOLD_MARKER}$1${MD_BOLD_MARKER}"}, "context":
+   [
+       { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+       { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+       { "key": "following_text", "operator": "regex_contains", "operand": "^(?:\t| |\\)|]|\\}|$)", "match_all": true },
+       { "key": "preceding_text", "operator": "not_regex_contains", "operand": "['a-zA-Z0-9_]$", "match_all": true },
+       { "key": "eol_selector", "operator": "not_equal", "operand": "string.quoted.single", "match_all": true },
+       { "key": "selector", "operator": "equal", "operand": "text.html.markdown", "match_all": true }
+   ]
+  },
+  { "keys": ["super+alt+b"], "command": "insert_snippet", "args": {"contents": "${MD_BOLD_MARKER}${SELECTION/(^[\\*_]*|[\\*_]*$)//g}${MD_BOLD_MARKER}"}, "context":
+      [
+          { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+          { "key": "selection_empty", "operator": "equal", "operand": false, "match_all": true },
+          { "key": "selector", "operator": "equal", "operand": "text.html.markdown", "match_all": true }
+      ]
+  },
+
+  // Override Emmet
+  {
+        "keys": [
+            "tab"
+        ],
+        "command": "expand_abbreviation_by_tab",
+        "context": [
+            {
+                "operand": "source.css, source.sass, source.less, source.scss, source.stylus, source.postcss, source.jade, text.jade, text.slim, text.xml, text.html.basic, text.haml, text.scala.html, source string",
+                "operator": "equal",
+                "match_all": true,
+                "key": "selector"
+            },
+            {
+                "operand": "storage.type.templatetag.django",
+                "operator": "not_equal",
+                "match_all": true,
+                "key": "selector"
+            },
+            {
+                "match_all": true,
+                "key": "selection_empty"
+            },
+            {
+                "operator": "equal",
+                "operand": false,
+                "match_all": true,
+                "key": "has_next_field"
+            },
+            {
+                "operator": "equal",
+                "operand": false,
+                "match_all": true,
+                "key": "setting.disable_tab_abbreviations"
+            },
+            {
+                "operand": false,
+                "operator": "equal",
+                "match_all": true,
+                "key": "auto_complete_visible"
+            },
+            {
+                "match_all": true,
+                "key": "is_abbreviation"
+            }
+        ]
+    }
+
+  // Emmet expansion
+  // {
+  //   "keys": [
+  //     "tab"
+  //   ],
+  //   "args": {
+  //     "action": "expand_abbreviation"
+  //   },
+  //   "command": "run_emmet_action",
+  //   "context": [
+  //     {
+  //     "key": "emmet_action_enabled.expand_abbreviation"
+  //     }
+  //   ]
+  // }
+]

@@ -1,0 +1,6 @@
+[
+	{
+    "context": "window",
+		"command": "new_window"
+	}
+]

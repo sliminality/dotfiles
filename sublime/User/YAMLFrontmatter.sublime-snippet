@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+---
+title: ${1:Title}
+author:
+- name: ${2:Sarah Lim}
+  affiliation: ${3:Northwestern University}
+  email: ${4:slim@u.northwestern.edu}
+date: ${5:Date} 2016
+abstract: ${6:}
+codeBlockCaptions: True
+---
+
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>---</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>text.html.markdown.academicmarkdown</scope>
+</snippet>

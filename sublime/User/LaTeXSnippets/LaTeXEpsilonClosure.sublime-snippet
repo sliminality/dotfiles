@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+\small\mathrm{ECLOSE}(${1:q})
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>\eclose</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope>meta.paragraph.markdown</scope> -->
+  <!-- <scope>text.html.markdown.gfm</scope> -->
+  <scope>string.other.math</scope>
+</snippet>

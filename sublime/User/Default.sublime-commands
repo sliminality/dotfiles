@@ -1,0 +1,41 @@
+[
+  {
+    "caption": "SublimeREPL: Eval in REPL - File",
+    "command": "repl_transfer_current",
+    "args": { "scope": "file" }
+  }, {
+    "caption": "SublimeREPL: Eval in REPL - Selection",
+    "command": "repl_transfer_current",
+    "args": { "scope": "selection" }
+  }, {
+    "caption": "SublimeREPL: Eval in REPL - Block",
+    "command": "repl_transfer_current",
+    "args": { "scope": "block" }
+  }, {
+    "caption": "Expand selection to paragraph",
+    "command": "expand_selection_to_paragraph"
+  }, {
+    "caption": "Reg Replace: MathJax to KaTeX",
+    "command": "reg_replace",
+    "args": {
+      "replacements": [
+        "convert_block_math",
+        "convert_inline_math"
+      ]
+    }
+  }, {
+    "caption": "Reg Replace: apple",
+    "command": "reg_replace",
+    "args": {
+      "replacements": [
+        "testing"
+      ]
+    }
+  }, {
+    "caption": "Preferences: Pandoc Settings - User",
+    "command": "open_file",
+    "args": {
+      "file": "${packages}/User/Pandoc.sublime-settings"
+    }
+  }
+]

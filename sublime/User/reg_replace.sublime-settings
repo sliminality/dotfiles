@@ -1,0 +1,22 @@
+{
+  "replacements": {
+    "convert_block_math": {
+      "find": "^(\\s+)?\\${2}(?!\n)([\\sa-zA-Z0-9\\&\\(\\)\\{\\}\\^_\\+\\-\\*\/\\,\\.\\=\\\\]+)(?<!\n)\\${2}",
+      "replace": "\\1\\$\\$\n\\1\\2\n\\1\\$\\$",
+      "greedy": true,
+      "case": false
+    },
+    "convert_inline_math": {
+      "find": "(?<!\\$)\\$([\\sa-zA-Z0-9\\&\\(\\)\\\\{\\}\\^_\\+\\-\\*\/\\,\\.\\=]+)\\$(?!\\$)",
+      "replace": "\\$\\$\\1\\$\\$",
+      "greedy": true,
+      "case": false
+    },
+    "testing": {
+      "find": "apple",
+      "replace": "banana",
+      "greedy": true,
+      "case": false
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  // "shell_cmd": "javac -classpath \"trove-3.0.3.jar:junit.jar\" *.java && java -classpath \"trove-3.0.3.jar:junit.jar:.\" LayeredFlatSequenceModel train penn_train.dat ptb.model ptb.config"
+  "shell_cmd": "javac -classpath \"trove-3.0.3.jar:junit.jar\" *.java",
+  "quiet": true
+}
