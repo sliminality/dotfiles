@@ -28,6 +28,9 @@ alias lsl='ls -hlF'
 alias lsla='ls -halF'
 alias lsal='ls -halF'
 
+# Alias k
+alias k='k -h --no-vcs'
+
 # Enable aliases to be sudo'd
 # alias sudo='sudo '
 
@@ -77,3 +80,5 @@ alias google-chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chr
 ############################################
 
 alias murphy='ssh scl025@murphy.wot.eecs.northwestern.edu'
+
+
