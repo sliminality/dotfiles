@@ -21,3 +21,10 @@ Thumbs.db
 
 # System files
 *~
+
+# Sublime files
+*.sublime-workspace
+*.sublime-project
+
+# vim swap files
+.*.sw?
