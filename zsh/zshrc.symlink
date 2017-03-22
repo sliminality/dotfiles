@@ -38,6 +38,7 @@ path=(
   /usr/local/go/bin
   /Applications/Racket v6.4/bin
   $path
+  $HOME/Library/Python/2.7/bin
 )
 
 # load everything but the path and completion files
@@ -62,6 +63,7 @@ function chpwd () {
 }
 
 # Source z
+
 if [[ -s "$HOME/z/z.sh" ]]; then
   source "$HOME/z/z.sh"
 else
@@ -79,6 +81,13 @@ export NVM_DIR="/Users/sarah/.nvm"
 export NVM_LAZY_LOAD=true
 source ~/.zsh-nvm/zsh-nvm.plugin.zsh
 
-# Base16 stuff
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+export NVM_DIR="$HOME/.nvm"
+
+# fzf defaults
+export FZF_DEFAULT_OPTS="--height 40% --border"
+
+# Source k
+source ~/k/k.sh
+
+# Powerline
+# . /Users/sarah/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
