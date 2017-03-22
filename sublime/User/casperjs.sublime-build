@@ -1,4 +1,0 @@
-{
-  "shell_cmd": "casperjs $file",
-  "selector": "source.js"
-}

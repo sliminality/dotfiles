@@ -1,9 +1,0 @@
-[
-	{
-		"args":
-		{
-			"scope": "file"
-		},
-		"command": "repl_transfer_current"
-	}
-]

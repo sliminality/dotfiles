@@ -1,6 +1,0 @@
-{
-  "mde.lint":{
-    // Number of spaces per list indent. Set to 0 to use Sublime tab_size instead
-    "md007": 4,
-  }
-}
