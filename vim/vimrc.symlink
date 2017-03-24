@@ -1,0 +1,320 @@
+" Vundle {
+
+    set nocompatible              " be iMproved, required
+    filetype off                  " required
+
+    " set the runtime path to include Vundle and initialize
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+
+    " let Vundle manage Vundle, required
+    Plugin 'VundleVim/Vundle.vim'
+
+    " plugin on GitHub repo
+    Plugin 'scrooloose/syntastic'
+    Plugin 'Valloric/YouCompleteMe'
+
+    Plugin 'jistr/vim-nerdtree-tabs'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'vim-airline/vim-airline'
+
+    Plugin 'tpope/vim-surround'
+    Plugin 'jiangmiao/auto-pairs'
+    Plugin 'tpope/vim-commentary'
+    Plugin 'tpope/vim-repeat'
+    Plugin 'junegunn/fzf'
+    Plugin 'junegunn/fzf.vim'
+
+    Plugin 'elzr/vim-json'
+    Plugin 'pangloss/vim-javascript'
+    Plugin 'mxw/vim-jsx'
+    Plugin 'kchmck/vim-coffee-script'
+    Plugin 'godlygeek/tabular'
+    Plugin 'plasticboy/vim-markdown'
+    Plugin 'HTML-AutoCloseTag'
+    Plugin 'hail2u/vim-css3-syntax'
+
+    Plugin 'mattn/emmet-vim'
+    Plugin 'vim-pandoc/vim-pandoc'
+    Plugin 'vim-pandoc/vim-pandoc-syntax'
+    Plugin 'lervag/vimtex'
+
+    Plugin 'zephod/vim-iterm2-navigator'
+
+    " plugin from http://vim-scripts.org/vim/scripts.html
+    " Plugin 'L9'
+    " Git plugin not hosted on GitHub
+    " Plugin 'git://git.wincent.com/command-t.git'
+    " git repos on your local machine (i.e. when working on your own plugin)
+    " Plugin 'file:///home/gmarik/path/to/plugin'
+    " The sparkup vim script is in a subdirectory of this repo called vim.
+    " Pass the path to set the runtimepath properly.
+    " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+    call vundle#end()
+    filetype plugin indent on
+    " To ignore plugin indent changes, instead use:
+    "filetype plugin on
+
+    " :PluginList       - lists configured plugins
+    " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+    " :PluginSearch foo - searches for foo; append `!` to refresh local cache
+    " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" }
+
+" Formatting
+
+    set number          " Enable line numbers
+    set wrap            " Wrap lines
+
+    set nojoinspaces    " No double spaces after punctuation on join
+
+    set expandtab       " Use spaces instead of tabs
+    set smarttab        " Be smart when using tabs
+    set shiftwidth=4    " 1 tab == 4 spaces
+    set tabstop=4
+    autocmd FileType javascript,haskell,yml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+    autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+
+    set lbr             " Linebreak on 500 chars
+    set tw=500
+    set autoindent      " Auto indent
+    set si              " Smart indent
+
+    let g:NERDSpaceDelims = 1   " Space after comment delim
+
+    " Auto detect filetypes
+    filetype plugin indent on
+
+    " Delete trailing whitespace on save
+    func! DeleteTrailingWS()
+      exe "normal mz"
+      %s/\s\+$//ge
+      exe "normal `z"
+    endfunc
+    autocmd BufWrite *.py :call DeleteTrailingWS()
+    autocmd BufWrite *.js :call DeleteTrailingWS()
+
+    " Stop automatically inserting new comment leaders,
+    " unless we hit 'o' or 'O' in normal mode.
+    au FileType * set fo-=r fo-=c fo-=o
+
+" UI
+
+    syntax enable       " Enable syntax highlighting
+    color ron
+    set cursorline      " Highlight current line
+
+    set nospell         " Disable spellcheck
+    set incsearch       " Find as you type search
+    set hlsearch        " Highlight found search results
+    set ignorecase      " Case insensitive search
+    set smartcase       " Case sensitive when uc present
+    set wildmenu        " Show list instead of just completing
+    highlight clear SignColumn    " SignColumn should match background
+    highlight clear LineNr        " Current line number row will have same background color in relative mode
+    highlight LineNr ctermfg=grey ctermbg=white
+
+    " Pane separator
+    " Set split separator to Unicode box drawing character
+    set encoding=utf8
+    set fillchars=vert:│
+
+    " Override color scheme to make split the same color as tmux's default
+    autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=White ctermbg=NONE
+
+    set mouse=a         " Automatically enable mouse usage
+    set mousehide       " Hide the mouse cursor while typing
+
+    set laststatus=2    " Always show the status line
+    set showcmd         " Partial commands in status line
+
+    " Enable syntax highlighting for Flow
+    let g:javascript_plugin_flow = 1
+
+    " Add JSX syntax highlighting to .js files
+    let g:jx_ext_required = 0
+
+    " Stop automatically inserting new comment leaders,
+    " unless we hit 'o' or 'O' in normal mode.
+    au FileType * set fo-=r fo-=c fo-=o
+
+    " Disable scrollbars
+    set guioptions-=r
+    set guioptions-=R
+    set guioptions-=l
+    set guioptions-=L
+
+    " Open new splits to the right and bottom
+    set splitbelow
+    set splitright
+
+    set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+
+    " Allow to trigger background
+    set background=light
+    function! ToggleBG()
+        let s:tbg = &background
+        " Inversion
+        if s:tbg == "dark"
+            set background=light
+        else
+            set background=dark
+        endif
+    endfunction
+    noremap <leader>bg :call ToggleBG()<CR>
+
+" Editing
+
+    set scrolljump=5       " Lines to scroll when cursor leaves screen
+    set scrolloff=10       " Minimum lines to keep above and below cursor
+    set pastetoggle=<F12>
+
+    set iskeyword-=.       " '.' is an end of word designator
+    set iskeyword-=#       " '#' is an end of word designator
+    set iskeyword-=-       " '-' is an end of word designator
+
+    " Command <Tab> completion, list matches, then longest common part, then all.
+    set wildmode=list:longest,full
+
+" Filesystem
+
+    set autoread        " Autoread when a file is changed externally
+    set hidden          " Hide buffers instead of closing
+
+    " Enable persistent undo across buffers and sessions
+    try
+        set undodir=~/.vim_runtime/temp_dirs/undodir
+        set undofile
+        set undolevels=1000
+        set undoreload=10000
+    catch
+    endtry
+
+    " Return to last edit position when opening files
+    autocmd BufReadPost *
+         \ if line("'\"") > 0 && line("'\"") <= line("$") |
+         \   exe "normal! g`\"" |
+         \ endif
+
+    " Most prefer to automatically switch to the current file directory when
+    " a new buffer is opened; to prevent this behavior, add the following to
+    " your .vimrc.before.local file:
+    "   let g:no_autochdir = 1
+    if !exists('g:no_autochdir')
+        autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+        " Always switch to the current file directory
+    endif
+
+" Mappings
+
+    let mapleader=" "   " Leader key to space
+
+    " Exit insert mode with kj
+    inoremap jk <esc>
+    inoremap kj <esc>
+
+    " Wrapped lines goes down/up to next row, rather than next line in file.
+    noremap j gj
+    noremap k gk
+
+    " Move lines around easily
+    nnoremap <leader>k :m-2<cr>==
+    nnoremap <leader>j :m+<cr>==
+    xnoremap <leader>k :m-2<cr>gv=gv
+    xnoremap <leader>j :m'>+<cr>gv=gv
+
+    " Code folding options
+    nmap <leader>f0 :set foldlevel=0<CR>
+    nmap <leader>f1 :set foldlevel=1<CR>
+    nmap <leader>f2 :set foldlevel=2<CR>
+    nmap <leader>f3 :set foldlevel=3<CR>
+    nmap <leader>f4 :set foldlevel=4<CR>
+    nmap <leader>f5 :set foldlevel=5<CR>
+    nmap <leader>f6 :set foldlevel=6<CR>
+    nmap <leader>f7 :set foldlevel=7<CR>
+    nmap <leader>f8 :set foldlevel=8<CR>
+    nmap <leader>f9 :set foldlevel=9<CR>
+
+    " Toggle search highlighting instead of clearing
+    nmap <silent> <leader>/ :set invhlsearch<CR>
+
+    " Find merge conflict markers
+    map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+
+    " Shortcuts
+    " Change Working Directory to that of the current file
+    cmap cwd lcd %:p:h
+    cmap cd. lcd %:p:h
+
+    " Visual shifting (does not exit Visual mode)
+    vnoremap < <gv
+    vnoremap > >gv
+
+    " Allow using the repeat operator with a visual selection (!)
+    " http://stackoverflow.com/a/8064607/127816
+    vnoremap . :normal .<CR>
+
+    " Map <Leader>ff to display all lines with keyword under cursor
+    " and ask which one to jump to
+    nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+
+	" Faster fzf access
+    nnoremap <leader>o :Files<cr>
+
+    " Very magic regexes
+    nnoremap / /\v
+    vnoremap / /\v
+    cnoremap %s/ %smagic/
+    cnoremap \>s/ \>smagic/
+    nnoremap :g/ :g/\v
+    nnoremap :g// :g//
+
+" Plugins
+
+    " NERDTree
+    if isdirectory(expand("~/.vim/bundle/nerdtree"))
+        let NERDTreeShowHidden=1
+        let NERDTreeIgnore=['\.DS_Store', '\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+        nmap <leader>e :NERDTreeToggle<CR>
+    endif
+
+    " Tabularize
+    if isdirectory(expand("~/.vim/bundle/tabular"))
+        nmap <Leader>a& :Tabularize /&<CR>
+        vmap <Leader>a& :Tabularize /&<CR>
+        nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+        vmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+        nmap <Leader>a=> :Tabularize /=><CR>
+        vmap <Leader>a=> :Tabularize /=><CR>
+        nmap <Leader>a: :Tabularize /:<CR>
+        vmap <Leader>a: :Tabularize /:<CR>
+        nmap <Leader>a:: :Tabularize /:\zs<CR>
+        vmap <Leader>a:: :Tabularize /:\zs<CR>
+        nmap <Leader>a, :Tabularize /,<CR>
+        vmap <Leader>a, :Tabularize /,<CR>
+        nmap <Leader>a,, :Tabularize /,\zs<CR>
+        vmap <Leader>a,, :Tabularize /,\zs<CR>
+        nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+        vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+    endif
+
+" Syntastic
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+
+" Airline
+let g:airline_powerline_fonts = 1  " Auto populate g:airline_symbols dictionary
+let g:airline_theme = 'dark'
+let g:airline_right_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_left_alt_sep= ''
+let g:airline_left_sep = ''
+
+" execute pathogen#infect()
