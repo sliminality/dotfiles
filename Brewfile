@@ -5,6 +5,7 @@ tap 'caskroom/versions'
 
 brew 'ccat'
 brew 'coreutils'
+brew 'fasd'
 brew 'fzf'
 brew 'gcc'
 brew 'graphicsmagick'
