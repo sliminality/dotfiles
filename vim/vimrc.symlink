@@ -1,5 +1,4 @@
-" Vundle {
-
+" Vundle
     set nocompatible              " be iMproved, required
     filetype off                  " required
 
@@ -33,6 +32,7 @@
     Plugin 'plasticboy/vim-markdown'
     Plugin 'HTML-AutoCloseTag'
     Plugin 'hail2u/vim-css3-syntax'
+    Plugin 'wlangstroth/vim-racket'
 
     Plugin 'mattn/emmet-vim'
     Plugin 'vim-pandoc/vim-pandoc'
@@ -60,7 +60,7 @@
     " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
     " :PluginSearch foo - searches for foo; append `!` to refresh local cache
     " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-" }
+
 
 " Formatting
 
@@ -258,7 +258,7 @@
     " Map <Leader>ff to display all lines with keyword under cursor
     " and ask which one to jump to
     nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-
+    
 	" Faster fzf access
     nnoremap <leader>o :Files<cr>
 
@@ -299,22 +299,20 @@
         vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     endif
 
-" Syntastic
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
+    " Syntastic
+    " set statusline+=%#warningmsg#
+    " set statusline+=%{SyntasticStatuslineFlag()}
+    " set statusline+=%*
 
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
+    " let g:syntastic_always_populate_loc_list = 1
+    " let g:syntastic_auto_loc_list = 1
+    " let g:syntastic_check_on_open = 1
+    " let g:syntastic_check_on_wq = 0
 
-" Airline
-let g:airline_powerline_fonts = 1  " Auto populate g:airline_symbols dictionary
-let g:airline_theme = 'dark'
-let g:airline_right_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_left_alt_sep= ''
-let g:airline_left_sep = ''
-
-" execute pathogen#infect()
+    " Airline
+    let g:airline_powerline_fonts = 1  " Auto populate g:airline_symbols dictionary
+    let g:airline_theme = 'dark'
+    let g:airline_right_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_left_alt_sep= ''
+    let g:airline_left_sep = ''
