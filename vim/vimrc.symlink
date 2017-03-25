@@ -6,57 +6,64 @@
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
 
-    " let Vundle manage Vundle, required
-    Plugin 'VundleVim/Vundle.vim'
+    Plugin 'VundleVim/Vundle.vim'  " required
 
-    " plugin on GitHub repo
+    " Syntax and inference tooling
     Plugin 'scrooloose/syntastic'
+    Plugin 'ternjs/tern_for_vim'
+    Plugin 'flowtype/vim-flow'
     Plugin 'Valloric/YouCompleteMe'
 
+    " UI extensions
+    Plugin 'ayu-theme/ayu-vim'
     Plugin 'jistr/vim-nerdtree-tabs'
     Plugin 'scrooloose/nerdtree'
     Plugin 'vim-airline/vim-airline'
+    Plugin 'majutsushi/tagbar'
+    Plugin 'zephod/vim-iterm2-navigator'
+    Plugin 'jpalardy/vim-slime'
 
+    " Editing
+    Plugin 'lfilho/cosco.vim'
     Plugin 'tpope/vim-surround'
     Plugin 'jiangmiao/auto-pairs'
     Plugin 'tpope/vim-commentary'
     Plugin 'tpope/vim-repeat'
     Plugin 'junegunn/fzf'
     Plugin 'junegunn/fzf.vim'
+    Plugin 'mattn/emmet-vim'
+    Plugin 'HTML-AutoCloseTag'
 
+    " Language specific support
     Plugin 'elzr/vim-json'
     Plugin 'pangloss/vim-javascript'
     Plugin 'mxw/vim-jsx'
     Plugin 'kchmck/vim-coffee-script'
-    Plugin 'godlygeek/tabular'
-    Plugin 'plasticboy/vim-markdown'
-    Plugin 'HTML-AutoCloseTag'
     Plugin 'hail2u/vim-css3-syntax'
     Plugin 'wlangstroth/vim-racket'
 
-    Plugin 'mattn/emmet-vim'
+    " Markdown and writing
+    Plugin 'godlygeek/tabular'
+    Plugin 'plasticboy/vim-markdown'
     Plugin 'vim-pandoc/vim-pandoc'
     Plugin 'vim-pandoc/vim-pandoc-syntax'
     Plugin 'lervag/vimtex'
 
-    Plugin 'zephod/vim-iterm2-navigator'
-    Plugin 'lfilho/cosco.vim'
-
-    Plugin 'ayu-theme/ayu-vim'
     " plugin from http://vim-scripts.org/vim/scripts.html
     " Plugin 'L9'
+
     " Git plugin not hosted on GitHub
     " Plugin 'git://git.wincent.com/command-t.git'
+
     " git repos on your local machine (i.e. when working on your own plugin)
     " Plugin 'file:///home/gmarik/path/to/plugin'
+
     " The sparkup vim script is in a subdirectory of this repo called vim.
     " Pass the path to set the runtimepath properly.
     " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
     call vundle#end()
     filetype plugin indent on
-    " To ignore plugin indent changes, instead use:
-    "filetype plugin on
 
     " :PluginList       - lists configured plugins
     " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -74,8 +81,9 @@
     set smarttab        " Be smart when using tabs
     set shiftwidth=4    " 1 tab == 4 spaces
     set tabstop=4
-    autocmd FileType javascript,haskell,yml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+    autocmd FileType javascript,haskell,yaml,json setlocal shiftwidth=2 softtabstop=2 tabstop=2
     autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+    autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=yaml
 
     set lbr             " Linebreak on 500 chars
     set tw=500
@@ -153,9 +161,10 @@
     endfunction
     noremap <leader>bg :call ToggleBG()<CR>
 
-    set background=dark
+    set background=light  " Otherwise bright colors are lurid
     set t_Co=256
     if has('termguicolors')
+        set background=dark
         set termguicolors
     endif
 
@@ -268,9 +277,25 @@
     " Map <Leader>ff to display all lines with keyword under cursor
     " and ask which one to jump to
     nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-    
-	" Faster fzf access
-    nnoremap <leader>o :Files<cr>
+
+    " To open a new empty buffer
+    nmap <leader>T :enew<cr>
+
+    " Move to the next buffer
+    nmap <leader>l :bnext<CR>
+
+    " Move to the previous buffer
+    nmap <leader>h :bprevious<CR>
+
+    " Close the current buffer and move to the previous one
+    " This replicates the idea of closing a tab
+    nmap <leader>w :bp <BAR> bd #<CR>
+
+    " Show all open buffers and their status
+    nmap <leader>bl :ls<CR>
+
+    " Copy to system keyboard
+    vnoremap <C-c> "*y
 
     " Very magic regexes
     nnoremap / /\v
@@ -326,7 +351,16 @@
     let g:airline_right_sep = ''
     let g:airline_left_alt_sep= ''
     let g:airline_left_sep = ''
+	let g:airline#extensions#tabline#enabled = 1      " Enable the list of buffers
+	let g:airline#extensions#tabline#fnamemod = ':t'  " Show just the filename
+    
+	" Faster fzf access
+    nnoremap <leader>o :Files<cr>
+
+    " Tagbar
+    nmap <leader>r :TagbarToggle<CR>
 
     " JSON
     set conceallevel=0
     let g:vim_json_syntax_conceal = 0
+
