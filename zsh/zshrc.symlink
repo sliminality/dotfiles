@@ -64,12 +64,12 @@ function chpwd () {
 
 # Source z
 
-if [[ -s "$HOME/z/z.sh" ]]; then
-  source "$HOME/z/z.sh"
-else
-  git clone https://github.com/rupa/z $HOME/z
-  source "$HOME/z/z.sh"
-fi
+# if [[ -s "$HOME/z/z.sh" ]]; then
+#   source "$HOME/z/z.sh"
+# else
+#   git clone https://github.com/rupa/z $HOME/z
+#   source "$HOME/z/z.sh"
+# fi
 
 unset config_files
 
