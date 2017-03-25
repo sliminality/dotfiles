@@ -171,6 +171,8 @@
     let ayucolor="mirage"   " for dark version of theme
     colorscheme ayu
     " color ron
+
+    hi VertSplit guibg=#272D38
     
 " Editing
 
