@@ -312,6 +312,8 @@
         let NERDTreeShowHidden=1
         let NERDTreeIgnore=['\.DS_Store', '\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
         nmap <leader>e :NERDTreeToggle<CR>
+        let NERDTreeMouseMode=2  " Single click to open directories
+        hi NERDTreeDir ctermfg=11 guifg=#FFCC66 guibg=#242B38
     endif
 
     " Tabularize
