@@ -40,7 +40,9 @@
     Plugin 'lervag/vimtex'
 
     Plugin 'zephod/vim-iterm2-navigator'
+    Plugin 'lfilho/cosco.vim'
 
+    Plugin 'ayu-theme/ayu-vim'
     " plugin from http://vim-scripts.org/vim/scripts.html
     " Plugin 'L9'
     " Git plugin not hosted on GitHub
@@ -60,7 +62,6 @@
     " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
     " :PluginSearch foo - searches for foo; append `!` to refresh local cache
     " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-
 
 " Formatting
 
@@ -102,7 +103,6 @@
 " UI
 
     syntax enable       " Enable syntax highlighting
-    color ron
     set cursorline      " Highlight current line
 
     set nospell         " Disable spellcheck
@@ -111,17 +111,6 @@
     set ignorecase      " Case insensitive search
     set smartcase       " Case sensitive when uc present
     set wildmenu        " Show list instead of just completing
-    highlight clear SignColumn    " SignColumn should match background
-    highlight clear LineNr        " Current line number row will have same background color in relative mode
-    highlight LineNr ctermfg=grey ctermbg=white
-
-    " Pane separator
-    " Set split separator to Unicode box drawing character
-    set encoding=utf8
-    set fillchars=vert:│
-
-    " Override color scheme to make split the same color as tmux's default
-    autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=White ctermbg=NONE
 
     set mouse=a         " Automatically enable mouse usage
     set mousehide       " Hide the mouse cursor while typing
@@ -152,7 +141,6 @@
     set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
     " Allow to trigger background
-    set background=light
     function! ToggleBG()
         let s:tbg = &background
         " Inversion
@@ -164,15 +152,27 @@
     endfunction
     noremap <leader>bg :call ToggleBG()<CR>
 
+    set background=dark
+    set t_Co=256
+    if has('termguicolors')
+        set termguicolors
+    endif
+
+    let ayucolor="mirage"   " for dark version of theme
+    colorscheme ayu
+    " color ron
+
+    
 " Editing
 
-    set scrolljump=5       " Lines to scroll when cursor leaves screen
-    set scrolloff=10       " Minimum lines to keep above and below cursor
-    set pastetoggle=<F12>
+    set pastetoggle=<F12>            " Toggle auto-indentation
+    set backspace=indent,eol,start   " Backspace for dummies
+    set scrolljump=5                 " Lines to scroll when cursor leaves screen
+    set scrolloff=10                 " Minimum lines to keep above and below cursor
 
-    set iskeyword-=.       " '.' is an end of word designator
-    set iskeyword-=#       " '#' is an end of word designator
-    set iskeyword-=-       " '-' is an end of word designator
+    set iskeyword-=.                 " '.' delimits words
+    set iskeyword-=#                 " '#' delimits words
+    set iskeyword-=-                 " '-' delimits words
 
     " Command <Tab> completion, list matches, then longest common part, then all.
     set wildmode=list:longest,full
@@ -206,7 +206,10 @@
         " Always switch to the current file directory
     endif
 
-" Mappings
+    " Read config files as JSON
+    au BufNewFile,BufRead *.eslintrc,*.babelrc set filetype=json
+
+" Mapping
 
     let mapleader=" "   " Leader key to space
 
@@ -316,3 +319,7 @@
     let g:airline_right_sep = ''
     let g:airline_left_alt_sep= ''
     let g:airline_left_sep = ''
+
+    " JSON
+    set conceallevel=0
+    let g:vim_json_syntax_conceal = 0
