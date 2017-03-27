@@ -314,8 +314,8 @@
     nnoremap :g// :g//
 
     " Pad new lines without entering insert mode
-    nnoremap <leader><CR> O<Esc>j
-    nnoremap <CR> o<Esc>k
+    nnoremap <leader>O O<Esc>j
+    nnoremap <leader>o o<Esc>k
 
 " Plugins
 
@@ -387,7 +387,6 @@
 	let g:airline#extensions#tabline#fnamemod = ':t'  " Show just the filename
     
 	" Faster fzf access
-    nnoremap <leader>o :Files<cr>
     nnoremap <leader>p :GFiles<cr>
 
     " Tagbar
