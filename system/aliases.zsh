@@ -67,6 +67,7 @@ alias gcm='git commit -m '
 alias gca='git commit -am '
 alias gd='git diff'
 alias go='git checkout '
+alias gr='git rev-parse --show-toplevel'
 
 ############################################
 # Chrome

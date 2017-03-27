@@ -88,7 +88,7 @@ eval "$(fasd --init posix-alias zsh-hook)"
 
 # fzf defaults
 export FZF_DEFAULT_OPTS="--height 40% --border"
-export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*" --glob "!^(Caches|\.npm)/*"'
 
 # Source k
 source ~/k/k.sh
