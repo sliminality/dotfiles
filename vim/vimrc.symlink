@@ -313,6 +313,10 @@
     nnoremap :g/ :g/\v
     nnoremap :g// :g//
 
+    " Pad new lines without entering insert mode
+    nnoremap <leader><CR> O<Esc>j
+    nnoremap <CR> o<Esc>k
+
 " Plugins
 
     " Cosco
