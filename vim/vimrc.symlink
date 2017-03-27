@@ -16,8 +16,8 @@
 
     " UI extensions
     Plugin 'ayu-theme/ayu-vim'
-    Plugin 'jistr/vim-nerdtree-tabs'
     Plugin 'scrooloose/nerdtree'
+
     Plugin 'vim-airline/vim-airline'
     Plugin 'majutsushi/tagbar'
     Plugin 'zephod/vim-iterm2-navigator'
