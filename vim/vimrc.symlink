@@ -21,11 +21,12 @@
     Plugin 'vim-airline/vim-airline'
     Plugin 'majutsushi/tagbar'
     Plugin 'zephod/vim-iterm2-navigator'
-    Plugin 'jpalardy/vim-slime'
+    Plugin 'tpope/vim-fugitive'
 
     " Editing
     Plugin 'lfilho/cosco.vim'
     Plugin 'tpope/vim-surround'
+    Plugin 'jpalardy/vim-slime'
     Plugin 'jiangmiao/auto-pairs'
     Plugin 'tpope/vim-commentary'
     Plugin 'tpope/vim-repeat'
@@ -81,9 +82,14 @@
     set smarttab        " Be smart when using tabs
     set shiftwidth=4    " 1 tab == 4 spaces
     set tabstop=4
-    autocmd FileType javascript,haskell,yaml,json setlocal shiftwidth=2 softtabstop=2 tabstop=2
-    autocmd BufNewFile,BufRead *.coffee set filetype=coffee
-    autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=yaml
+
+    augroup SyntaxSettings
+        autocmd!
+        autocmd FileType html,javascript,haskell,yaml,json,css setlocal shiftwidth=2 softtabstop=2 tabstop=2
+        autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+        autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=yaml
+        autocmd BufNewFile,BufRead *.eslintrc,*.babelrc set filetype=json
+    augroup END
 
     set lbr             " Linebreak on 500 chars
     set tw=500
@@ -101,13 +107,12 @@
       %s/\s\+$//ge
       exe "normal `z"
     endfunc
-    autocmd BufWrite *.py :call DeleteTrailingWS()
-    autocmd BufWrite *.js :call DeleteTrailingWS()
-
-    " Stop automatically inserting new comment leaders,
-    " unless we hit 'o' or 'O' in normal mode.
-    au FileType * set fo-=r fo-=c fo-=o
-
+    augroup DeleteWhitespace
+        autocmd!
+        autocmd BufWrite *.py :call DeleteTrailingWS()
+        autocmd BufWrite *.js :call DeleteTrailingWS()
+    augroup END
+    
 " UI
 
     syntax enable       " Enable syntax highlighting
@@ -127,15 +132,14 @@
     set showcmd         " Partial commands in status line
     set showmode        " Show current mode
 
-    " Enable syntax highlighting for Flow
-    let g:javascript_plugin_flow = 1
-
-    " Add JSX syntax highlighting to .js files
-    let g:jx_ext_required = 0
+    set vb t_vb=        " Set visual bell and clear visual bell
 
     " Stop automatically inserting new comment leaders,
     " unless we hit 'o' or 'O' in normal mode.
-    au FileType * set fo-=r fo-=c fo-=o
+    augroup commentgroup
+        autocmd!
+        autocmd FileType * set fo-=r fo-=c fo-=o
+    augroup END
 
     " Disable scrollbars
     set guioptions-=r
@@ -203,22 +207,24 @@
     endtry
 
     " Return to last edit position when opening files
-    autocmd BufReadPost *
-         \ if line("'\"") > 0 && line("'\"") <= line("$") |
-         \   exe "normal! g`\"" |
-         \ endif
+    augroup SaveEditPosition
+        autocmd!
+        autocmd BufReadPost *
+             \ if line("'\"") > 0 && line("'\"") <= line("$") |
+             \   exe "normal! g`\"" |
+             \ endif
+    augroup END
 
     " Most prefer to automatically switch to the current file directory when
     " a new buffer is opened; to prevent this behavior, add the following to
     " your .vimrc.before.local file:
-    "   let g:no_autochdir = 1
+    " let g:no_autochdir = 1
     if !exists('g:no_autochdir')
-        autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-        " Always switch to the current file directory
+        augroup AutoChDir
+            autocmd!
+            autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+        augroup END
     endif
-
-    " Read config files as JSON
-    au BufNewFile,BufRead *.eslintrc,*.babelrc set filetype=json
 
     " Persist folds across sessions
     augroup AutoSaveFolds
@@ -309,10 +315,25 @@
 
 " Plugins
 
+    " Cosco
+    if isdirectory(expand('~/.vim/bundle/cosco.vim'))
+        augroup AppendSemicolon
+            autocmd!
+            autocmd FileType javascript,css nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
+            autocmd FileType javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
+        augroup END
+    endif
+
+    " Flow syntax highlighting
+    let g:javascript_plugin_flow = 1
+
+    " Add JSX syntax highlighting to .js files
+    let g:jx_ext_required = 0
+
     " NERDTree
     if isdirectory(expand("~/.vim/bundle/nerdtree"))
         let NERDTreeShowHidden=1
-        let NERDTreeIgnore=['\.DS_Store', '\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+        let NERDTreeIgnore=['\.DS_Store', '\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', 'node_modules']
         nmap <leader>e :NERDTreeToggle<CR>
         let NERDTreeMouseMode=2  " Single click to open directories
         hi NERDTreeDir ctermfg=11 guifg=#FFCC66 guibg=#242B38
@@ -360,6 +381,7 @@
     
 	" Faster fzf access
     nnoremap <leader>o :Files<cr>
+    nnoremap <leader>p :GFiles<cr>
 
     " Tagbar
     nmap <leader>r :TagbarToggle<CR>
