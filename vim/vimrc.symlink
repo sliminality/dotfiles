@@ -334,8 +334,11 @@
     if isdirectory(expand("~/.vim/bundle/nerdtree"))
         let NERDTreeShowHidden=1
         let NERDTreeIgnore=['\.DS_Store', '\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', 'node_modules']
-        nmap <leader>e :NERDTreeToggle<CR>
         let NERDTreeMouseMode=2  " Single click to open directories
+        let NERDTreeChDirMode=2  " cwd when NERDTree root changes
+        nmap <leader>e :NERDTreeToggle<CR>
+
+        " Highlight directories in yellow
         hi NERDTreeDir ctermfg=11 guifg=#FFCC66 guibg=#242B38
     endif
 
