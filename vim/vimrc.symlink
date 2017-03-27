@@ -219,18 +219,18 @@
     " a new buffer is opened; to prevent this behavior, add the following to
     " your .vimrc.before.local file:
     " let g:no_autochdir = 1
-    if !exists('g:no_autochdir')
-        augroup AutoChDir
-            autocmd!
-            autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-        augroup END
-    endif
+    " if !exists('g:no_autochdir')
+    "     augroup AutoChDir
+    "         autocmd!
+    "         autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+    "     augroup END
+    " endif
 
     " Persist folds across sessions
     augroup AutoSaveFolds
       autocmd!
-      autocmd BufWinLeave * mkview
-      autocmd BufWinEnter * silent loadview
+      autocmd BufWinLeave ?* mkview 1
+      autocmd BufWinEnter ?* silent loadview 1
     augroup END
 
 " Mapping
@@ -388,8 +388,14 @@
 	let g:airline#extensions#tabline#enabled = 1      " Enable the list of buffers
 	let g:airline#extensions#tabline#fnamemod = ':t'  " Show just the filename
     
-	" Faster fzf access
-    nnoremap <leader>p :GFiles<cr>
+	" fzf
+    if isdirectory(expand('~/.vim/bundle/fzf.vim'))
+        nnoremap <leader>p :GFiles<cr>
+        " let g:fzf_action = {
+        "     \ 'ctrl-t': 'tab split',
+        "     \ 'ctrl-x': 'split',
+        "     \ 'ctrl-v': 'vsplit' }
+    endif
 
     " Tagbar
     nmap <leader>r :TagbarToggle<CR>
