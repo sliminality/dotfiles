@@ -9,7 +9,7 @@
     Plugin 'VundleVim/Vundle.vim'  " required
 
     " Syntax and inference tooling
-    Plugin 'scrooloose/syntastic'
+"     " Plugin 'scrooloose/syntastic'
     Plugin 'ternjs/tern_for_vim'
     Plugin 'flowtype/vim-flow'
     Plugin 'Valloric/YouCompleteMe'
@@ -17,10 +17,7 @@
     " UI extensions
     Plugin 'ayu-theme/ayu-vim'
     Plugin 'scrooloose/nerdtree'
-
     Plugin 'vim-airline/vim-airline'
-    Plugin 'majutsushi/tagbar'
-    Plugin 'zephod/vim-iterm2-navigator'
     Plugin 'tpope/vim-fugitive'
 
     " Editing
@@ -86,10 +83,13 @@
     augroup SyntaxSettings
         autocmd!
         autocmd FileType html,javascript,haskell,yaml,json,css setlocal shiftwidth=2 softtabstop=2 tabstop=2
+        autocmd BufNewFile,BufRead *.md set filetype=pandoc
         autocmd BufNewFile,BufRead *.coffee set filetype=coffee
         autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=yaml
         autocmd BufNewFile,BufRead *.eslintrc,*.babelrc set filetype=json
     augroup END
+
+    let g:tex_flavor = 'latex'
 
     set lbr             " Linebreak on 500 chars
     set tw=500
@@ -112,11 +112,11 @@
         autocmd BufWrite *.py :call DeleteTrailingWS()
         autocmd BufWrite *.js :call DeleteTrailingWS()
     augroup END
-    
+
 " UI
 
     syntax enable       " Enable syntax highlighting
-    set cursorline      " Highlight current line
+"     set cursorline      " Highlight current line
 
     set nospell         " Disable spellcheck
     set incsearch       " Find as you type search
@@ -177,7 +177,7 @@
     " color ron
 
     hi VertSplit guibg=#272D38
-    
+
 " Editing
 
     set pastetoggle=<F12>            " Toggle auto-indentation
@@ -315,9 +315,34 @@
 
     " Pad new lines without entering insert mode
     nnoremap <leader>O O<Esc>j
-    nnoremap <leader>o o<Esc>k
+    " nnoremap <leader>o o<Esc>k
+
+    " Treat $ as text objects
+    " onoremap <silent> i$ :<c-u>normal! T$vt$<cr>
+    " vnoremap i$ T$ot$
 
 " Plugins
+
+    " vimtex
+    if isdirectory(expand('~/.vim/bundle/vimtex'))
+        let g:vimtex_complete_close_braces = 1
+    endif
+
+    if !exists('g:ycm_semantic_triggers')
+      let g:ycm_semantic_triggers = {}
+    endif
+    let g:ycm_semantic_triggers.tex = [
+              \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+              \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+              \ 're!\\hyperref\[[^]]*',
+              \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+              \ 're!\\(include(only)?|input){[^}]*',
+              \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
+              \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
+              \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
+              \ 're!\\usepackage(\s*\[[^]]*\])?\s*\{[^}]*',
+              \ 're!\\documentclass(\s*\[[^]]*\])?\s*\{[^}]*',
+              \ ]
 
     " Cosco
     if isdirectory(expand('~/.vim/bundle/cosco.vim'))
@@ -333,6 +358,12 @@
 
     " Add JSX syntax highlighting to .js files
     let g:jx_ext_required = 0
+
+    " AutoPairs
+    if isdirectory(expand('~/.vim/bundle/auto-pairs'))
+        let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`',
+            \ '$': '$' }
+    endif
 
     " NERDTree
     if isdirectory(expand("~/.vim/bundle/nerdtree"))
@@ -366,17 +397,17 @@
         vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     endif
 
-    " Syntastic
-    if isdirectory(expand('~/.vim/bundle/syntastic'))
-        " set statusline+=%#warningmsg#
-        " set statusline+=%{SyntasticStatuslineFlag()}
-        " set statusline+=%*
+"     " Syntastic
+"     if isdirectory(expand('~/.vim/bundle/syntastic'))
+"         " set statusline+=%#warningmsg#
+"         " set statusline+=%{SyntasticStatuslineFlag()}
+"         " set statusline+=%*
 
-        let g:syntastic_always_populate_loc_list = 1
-        let g:syntastic_auto_loc_list = 1
-        let g:syntastic_check_on_open = 1
-        let g:syntastic_check_on_wq = 0
-    endif
+"         let g:syntastic_always_populate_loc_list = 1
+"         let g:syntastic_auto_loc_list = 1
+"         let g:syntastic_check_on_open = 1
+"         let g:syntastic_check_on_wq = 0
+"     endif
 
     " Airline
     let g:airline_powerline_fonts = 1  " Auto populate g:airline_symbols dictionary
@@ -385,20 +416,18 @@
     let g:airline_right_sep = ''
     let g:airline_left_alt_sep= ''
     let g:airline_left_sep = ''
-	let g:airline#extensions#tabline#enabled = 1      " Enable the list of buffers
-	let g:airline#extensions#tabline#fnamemod = ':t'  " Show just the filename
-    
-	" fzf
+    let g:airline#extensions#tabline#enabled = 1      " Enable the list of buffers
+    let g:airline#extensions#tabline#fnamemod = ':t'  " Show just the filename
+
+    " fzf
     if isdirectory(expand('~/.vim/bundle/fzf.vim'))
         nnoremap <leader>p :GFiles<cr>
+        nnoremap <leader>o :Files<cr>
         " let g:fzf_action = {
         "     \ 'ctrl-t': 'tab split',
         "     \ 'ctrl-x': 'split',
         "     \ 'ctrl-v': 'vsplit' }
     endif
-
-    " Tagbar
-    nmap <leader>r :TagbarToggle<CR>
 
     " JSON
     set conceallevel=0
