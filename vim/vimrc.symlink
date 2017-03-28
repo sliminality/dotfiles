@@ -42,7 +42,7 @@
 
     " Markdown and writing
     Plugin 'godlygeek/tabular'
-    Plugin 'plasticboy/vim-markdown'
+    " Plugin 'plasticboy/vim-markdown'
     Plugin 'vim-pandoc/vim-pandoc'
     Plugin 'vim-pandoc/vim-pandoc-syntax'
     Plugin 'lervag/vimtex'
@@ -83,10 +83,12 @@
     augroup SyntaxSettings
         autocmd!
         autocmd FileType html,javascript,haskell,yaml,json,css setlocal shiftwidth=2 softtabstop=2 tabstop=2
-        autocmd BufNewFile,BufRead *.md set filetype=pandoc
         autocmd BufNewFile,BufRead *.coffee set filetype=coffee
         autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=yaml
         autocmd BufNewFile,BufRead *.eslintrc,*.babelrc set filetype=json
+
+        au BufNewFile,BufRead *.mdown,*.mkd,*.md set filetype=tex 
+        au BufNewFile,BufRead *.mdown,*.md set syntax=pandoc
     augroup END
 
     let g:tex_flavor = 'latex'
@@ -177,6 +179,13 @@
     " color ron
 
     hi VertSplit guibg=#272D38
+
+    " Make concealed operators readable in LaTeX
+    hi! link Conceal Operator
+
+    " Make matched parens visually distinct from cursor
+    " MatchParen     xxx ctermbg=6 guifg=#212733 guibg=#D9D7CE
+    hi MatchParen cterm=underline ctermbg=NONE guibg=NONE guifg=#D4BFFF
 
 " Editing
 
