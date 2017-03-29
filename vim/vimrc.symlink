@@ -9,21 +9,21 @@
     Plugin 'VundleVim/Vundle.vim'  " required
 
     " Syntax and inference tooling
-"     " Plugin 'scrooloose/syntastic'
-    Plugin 'ternjs/tern_for_vim'
-    Plugin 'flowtype/vim-flow'
+    " Plugin 'scrooloose/syntastic'
+    " Plugin 'ternjs/tern_for_vim'
+    " Plugin 'flowtype/vim-flow'
     Plugin 'Valloric/YouCompleteMe'
 
     " UI extensions
     Plugin 'ayu-theme/ayu-vim'
     Plugin 'scrooloose/nerdtree'
     Plugin 'vim-airline/vim-airline'
-    Plugin 'tpope/vim-fugitive'
+    " Plugin 'tpope/vim-fugitive'
 
     " Editing
     Plugin 'lfilho/cosco.vim'
     Plugin 'tpope/vim-surround'
-    Plugin 'jpalardy/vim-slime'
+    " Plugin 'jpalardy/vim-slime'
     Plugin 'jiangmiao/auto-pairs'
     Plugin 'tpope/vim-commentary'
     Plugin 'tpope/vim-repeat'
@@ -36,9 +36,9 @@
     Plugin 'elzr/vim-json'
     Plugin 'pangloss/vim-javascript'
     Plugin 'mxw/vim-jsx'
-    Plugin 'kchmck/vim-coffee-script'
+    " Plugin 'kchmck/vim-coffee-script'
     Plugin 'hail2u/vim-css3-syntax'
-    Plugin 'wlangstroth/vim-racket'
+    " Plugin 'wlangstroth/vim-racket'
 
     " Markdown and writing
     Plugin 'godlygeek/tabular'
@@ -186,6 +186,14 @@
     " Make matched parens visually distinct from cursor
     " MatchParen     xxx ctermbg=6 guifg=#212733 guibg=#D9D7CE
     hi MatchParen cterm=underline ctermbg=NONE guibg=NONE guifg=#D4BFFF
+
+    " make Esc happen without waiting for timeoutlen
+    " fixes Powerline delay
+    augroup FastEscape
+      autocmd!
+      au InsertEnter * set timeoutlen=0
+      au InsertLeave * set timeoutlen=1000
+    augroup END
 
 " Editing
 
@@ -419,14 +427,17 @@
 "     endif
 
     " Airline
-    let g:airline_powerline_fonts = 1  " Auto populate g:airline_symbols dictionary
-    let g:airline_theme = 'dark'
-    let g:airline_right_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_left_alt_sep= ''
-    let g:airline_left_sep = ''
-    let g:airline#extensions#tabline#enabled = 1      " Enable the list of buffers
-    let g:airline#extensions#tabline#fnamemod = ':t'  " Show just the filename
+    if isdirectory(expand('~/.vim/bundle/vim-airline')) 
+        let g:airline_powerline_fonts = 1  " Auto populate g:airline_symbols dictionary
+        let g:airline_theme = 'dark'
+        let g:airline_right_alt_sep = ''
+        let g:airline_right_sep = ''
+        let g:airline_left_alt_sep= ''
+        let g:airline_left_sep = ''
+        let g:airline#extensions#tabline#enabled = 1      " Enable the list of buffers
+        let g:airline#extensions#tabline#fnamemod = ':t'  " Show just the filename
+        let g:airline_extensions = ['tabline']
+    endif
 
     " fzf
     if isdirectory(expand('~/.vim/bundle/fzf.vim'))
