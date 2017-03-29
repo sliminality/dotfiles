@@ -39,7 +39,7 @@ path=(
   /Applications/Racket v6.4/bin
   $path
   $HOME/Library/Python/2.7/bin
-  $HOME/.cargo/env
+  $HOME/.cargo/bin
 )
 
 # load everything but the path and completion files
