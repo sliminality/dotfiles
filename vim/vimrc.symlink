@@ -38,6 +38,7 @@
     Plugin 'mxw/vim-jsx'
     " Plugin 'kchmck/vim-coffee-script'
     Plugin 'hail2u/vim-css3-syntax'
+    Plugin 'rust-lang/rust.vim'
     " Plugin 'wlangstroth/vim-racket'
 
     " Markdown and writing
