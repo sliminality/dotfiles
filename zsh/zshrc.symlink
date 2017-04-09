@@ -84,6 +84,9 @@ source ~/.zsh-nvm/zsh-nvm.plugin.zsh
 
 export NVM_DIR="$HOME/.nvm"
 
+# Rust src for racer
+export RUST_SRC_PATH=~/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
+
 # fasd
 eval "$(fasd --init posix-alias zsh-hook)"
 
