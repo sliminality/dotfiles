@@ -9,10 +9,11 @@
     Plugin 'VundleVim/Vundle.vim'  " required
 
     " Syntax and inference tooling
-    " Plugin 'scrooloose/syntastic'
-    " Plugin 'ternjs/tern_for_vim'
-    " Plugin 'flowtype/vim-flow'
+    Plugin 'scrooloose/syntastic'
+    Plugin 'ternjs/tern_for_vim'
+    Plugin 'flowtype/vim-flow'
     Plugin 'Valloric/YouCompleteMe'
+    Plugin 'racer-rust/vim-racer'
 
     " UI extensions
     Plugin 'ayu-theme/ayu-vim'
@@ -366,8 +367,8 @@
     if isdirectory(expand('~/.vim/bundle/cosco.vim'))
         augroup AppendSemicolon
             autocmd!
-            autocmd FileType javascript,css nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
-            autocmd FileType javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
+            autocmd FileType rust,c,ch,json,java,sass,javascript,css nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
+            autocmd FileType rust,c,ch,json,java,sass,javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
         augroup END
     endif
 
@@ -376,6 +377,9 @@
 
     " Add JSX syntax highlighting to .js files
     let g:jx_ext_required = 0
+
+    " Automatically format Rust on save
+    let g:rustfmt_autosave = 1
 
     " AutoPairs
     if isdirectory(expand('~/.vim/bundle/auto-pairs'))
