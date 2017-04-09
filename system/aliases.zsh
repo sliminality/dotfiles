@@ -31,9 +31,6 @@ alias lsal='ls -halF'
 # Alias k
 alias k='k -h --no-vcs'
 
-# Enable aliases to be sudo'd
-# alias sudo='sudo '
-
 ############################################
 # Visual
 ############################################
@@ -43,6 +40,9 @@ alias cat='ccat'
 
 # Prettyprint path
 alias path='echo $PATH | tr -s ":" "\n"'
+
+# tmux requires screen-256colors
+alias tmux='TERM=xterm-256color tmux'
 
 ############################################
 # Utility
