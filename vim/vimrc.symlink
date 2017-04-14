@@ -16,6 +16,7 @@
     " UI extensions
     Plugin 'ayu-theme/ayu-vim'
     Plugin 'scrooloose/nerdtree'
+    Plugin 'christoomey/vim-tmux-navigator'
     Plugin 'vim-airline/vim-airline'
     " Plugin 'tpope/vim-fugitive'
 
@@ -31,6 +32,7 @@
     Plugin 'mattn/emmet-vim'
     Plugin 'HTML-AutoCloseTag'
     Plugin 'tpope/vim-dispatch'
+    Plugin 'terryma/vim-multiple-cursors'
 
     " Language specific support
     Plugin 'elzr/vim-json'
@@ -154,8 +156,8 @@
     set splitbelow
     set splitright
 
-    set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-
+	set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+    
     " Allow to trigger background
     function! ToggleBG()
         let s:tbg = &background
@@ -167,13 +169,12 @@
         endif
     endfunction
     noremap <leader>bg :call ToggleBG()<CR>
-
+    
     " set Vim-specific sequences for RGB colors
     " necessary for tmux + vim to work
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum""]"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum""]"
 
-    "]"
     set background=light  " Otherwise bright colors are lurid
     set t_Co=256
     if has('termguicolors')
@@ -191,8 +192,10 @@
     hi! link Conceal Operator
 
     " Make matched parens visually distinct from cursor
-    " MatchParen     xxx ctermbg=6 guifg=#212733 guibg=#D9D7CE
-    hi MatchParen cterm=underline ctermbg=NONE guibg=NONE guifg=#D4BFFF
+    hi MatchParen term=underline cterm=underline gui=underline guifg=NONE guibg=NONE
+
+    " Change gutter color
+    hi LineNr guibg=#272d38
 
     " make Esc happen without waiting for timeoutlen
     " fixes Powerline delay
@@ -249,13 +252,6 @@
     "         autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
     "     augroup END
     " endif
-
-    " Persist folds across sessions
-    augroup AutoSaveFolds
-      autocmd!
-      autocmd BufWinLeave ?* mkview 1
-      autocmd BufWinEnter ?* silent loadview 1
-    augroup END
 
 " Mapping
 
@@ -345,8 +341,25 @@
     " onoremap <silent> i$ :<c-u>normal! T$vt$<cr>
     " vnoremap i$ T$ot$
 
+    " Navigate splits
+    nnoremap <c-j> <c-w>j
+    nnoremap <c-k> <c-w>k
+    nnoremap <c-h> <c-w>h
+    nnoremap <c-l> <c-w>l
+
 " Plugins
 
+    " Pandoc
+    if isdirectory(expand('~/.vim/bundle/vim-pandoc'))
+        let g:pandoc#syntax#codeblocks#embeds#langs = [
+            \ 'python',
+            \ 'javascript',
+            \ 'css',
+            \ 'rkt=scheme',
+            \ 'bash=sh'
+            \ ]
+    endif
+    
     " vimtex
     if isdirectory(expand('~/.vim/bundle/vimtex'))
         let g:vimtex_complete_close_braces = 1
@@ -421,7 +434,12 @@
     " AutoPairs
     if isdirectory(expand('~/.vim/bundle/auto-pairs'))
         let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`',
-            \ '$': '$' }
+            \ } " '$': '$' }
+    endif
+
+    " vim-surround
+    if isdirectory(expand('~/.vim/bundle/vim-surround'))
+        let g:surround_33 = "```\r```"
     endif
 
     " NERDTree
