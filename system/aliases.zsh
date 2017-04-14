@@ -42,7 +42,8 @@ alias cat='ccat'
 alias path='echo $PATH | tr -s ":" "\n"'
 
 # tmux requires screen-256colors
-alias tmux='TERM=xterm-256color tmux'
+alias tmux='tmux -2'
+alias tmka='tmux ls | grep : | cut -d. -f1 | awk "{print substr($1, 0, length($1)-1)}" | xargs kill'
 
 ############################################
 # Utility
