@@ -9,32 +9,21 @@
     Plugin 'VundleVim/Vundle.vim'  " required
 
     " Syntax and inference tooling
-    Plugin 'mattn/webapi-vim'
-    Plugin 'scrooloose/syntastic'
+    " Plugin 'scrooloose/syntastic'
     Plugin 'flowtype/vim-flow'
-    if !exists('g:actualvim')
-        Plugin 'Valloric/YouCompleteMe'
-    endif
+    Plugin 'Valloric/YouCompleteMe'
 
     " UI extensions
-    if !exists('g:actualvim')
-        Plugin 'sarahlim/wild-cherry-vim'
-        Plugin 'ayu-theme/ayu-vim'
-        Plugin 'altercation/vim-colors-solarized'
-        Plugin 'scrooloose/nerdtree'
-        " Plugin 'vim-airline/vim-airline'
-        Plugin 'itchyny/lightline.vim'
-        Plugin 'mgee/lightline-bufferline'
-        Plugin 'tpope/vim-fugitive'
-        Plugin 'Yggdroot/indentLine'
-        Plugin 'airblade/vim-gitgutter'
-        Plugin 'christoomey/vim-tmux-runner'
-        Plugin 'christoomey/vim-tmux-navigator'
-    endif
+    Plugin 'ayu-theme/ayu-vim'
+    Plugin 'scrooloose/nerdtree'
+    Plugin 'vim-airline/vim-airline'
+    " Plugin 'tpope/vim-fugitive'
+    Plugin 'Yggdroot/indentLine'
 
     " Editing
     Plugin 'lfilho/cosco.vim'
     Plugin 'tpope/vim-surround'
+    " Plugin 'jpalardy/vim-slime'
     Plugin 'jiangmiao/auto-pairs'
     Plugin 'tpope/vim-commentary'
     Plugin 'tpope/vim-repeat'
@@ -102,13 +91,8 @@
         autocmd BufNewFile,BufRead *.eslintrc,*.babelrc set filetype=json
 
         " Use Prettier to format JavaScript
-        if !exists('g:actualvim')
-            autocmd FileType javascript.jsx,javascript setlocal formatprg=prettier\ --stdin\ --parser\ flow\ --print-width\ 80\ --trailing-comma\ es5\ --single-quote\ true
-            autocmd BufWritePre *.js
-            \   exe "set cmdheight=2"
-            \ | exe "normal! gggqG\<C-o>\<C-o><CR>"
-            \ | exe "set cmdheight=1"
-        endif
+        autocmd FileType javascript.jsx,javascript setlocal formatprg=prettier\ --stdin\ --parser\ flow\ --print-width\ 80\ --trailing-comma\ es5\ --single-quote\ true
+        autocmd BufWritePre *.js exe "normal! gggqG\<C-o>\<C-o>"
 
         au BufNewFile,BufRead *.mdown,*.mkd,*.md set filetype=tex
         au BufNewFile,BufRead *.mdown,*.md set syntax=pandoc
@@ -140,13 +124,9 @@
 
 " UI
 
-    if !exists('g:actualvim')
-        syntax enable       " Enable syntax highlighting
-    "     set cursorline      " Highlight current line
-    endif
+    syntax enable       " Enable syntax highlighting
+"     set cursorline      " Highlight current line
 
-    set lazyredraw      " Make rendering performance better
-    set conceallevel=0  " Stop concealing Markdown
     set nospell         " Disable spellcheck
     set incsearch       " Find as you type search
     set hlsearch        " Highlight found search results
@@ -157,12 +137,11 @@
     set mouse=a         " Automatically enable mouse usage
     set mousehide       " Hide the mouse cursor while typing
 
+    set laststatus=2    " Always show the status line
+    set showcmd         " Partial commands in status line
+    set showmode        " Show current mode
+
     set vb t_vb=        " Set visual bell and clear visual bell
-
-
-    " MacVim gui font
-    set guifont=Operator\ Mono\ for\ Powerline:h13
-    set linespace=2
 
     " Stop automatically inserting new comment leaders,
     " unless we hit 'o' or 'O' in normal mode.
@@ -181,117 +160,7 @@
     set splitbelow
     set splitright
 
-    " Tab bar
-    set showtabline=2
-
-    " Status bar
-    set laststatus=2    " Always show the status line
-    set showcmd         " Partial commands in status line
-    set showmode        " Show current mode
-
-    set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-
-    " Lightweight status line to replace Airline {
-    " https://gabri.me/blog/diy-vim-statusline
-    " let g:currentmode = {
-    "     \ 'n'  : 'NORMAL ',
-    "     \ 'no' : 'N·Operator Pending ',
-    "     \ 'v'  : 'V ',
-    "     \ 'V'  : 'VISUAL LINE',
-    "     \ '' : 'V·Block ',
-    "     \ 's'  : 'Select ',
-    "     \ 'S'  : 'S·Line ',
-    "     \ '^S' : 'S·Block ',
-    "     \ 'R'  : 'REPLACE ',
-    "     \ 'Rv' : 'V·Replace ',
-    "     \ 'c'  : 'Command ',
-    "     \ 'cv' : 'Vim Ex ',
-    "     \ 'ce' : 'Ex ',
-    "     \ 'r'  : 'Prompt ',
-    "     \ 'rm' : 'More ',
-    "     \ 'r?' : 'Confirm ',
-    "     \ '!'  : 'Shell ',
-    "     \ 't'  : 'Terminal '
-    "     \}
-
-    " " Automatically change the statusline color depending on mode
-    " function! ChangeStatuslineColor()
-    "   if (mode() =~# '\v(n|no)')
-    "     exe 'hi! StatusLine ctermfg=008'
-    "   elseif (mode() =~# '\v(v|V)' || g:currentmode[mode()] ==# 'V·Block' || get(g:currentmode, mode(), '') ==# 't')
-    "     exe 'hi! StatusLine ctermfg=005'
-    "   elseif (mode() ==# 'i')
-    "     exe 'hi! StatusLine ctermfg=004'
-    "   else
-    "     exe 'hi! StatusLine ctermfg=006'
-    "   endif
-
-    "   return ''
-    " endfunction
-
-    " " Find out current buffer's size and output it.
-    " function! FileSize()
-    "   let bytes = getfsize(expand('%:p'))
-    "   if (bytes >= 1024)
-    "     let kbytes = bytes / 1024
-    "   endif
-    "   if (exists('kbytes') && kbytes >= 1000)
-    "     let mbytes = kbytes / 1000
-    "   endif
-
-    "   if bytes <= 0
-    "     return '0'
-    "   endif
-
-    "   if (exists('mbytes'))
-    "     return mbytes . 'MB '
-    "   elseif (exists('kbytes'))
-    "     return kbytes . 'KB '
-    "   else
-    "     return bytes . 'B '
-    "   endif
-    " endfunction
-
-    " function! ReadOnly()
-    "   if &readonly || !&modifiable
-    "     return ''
-    "   else
-    "     return ''
-    " endfunction
-
-    " function! GitInfo()
-    "   let git = fugitive#head()
-    "   if git != ''
-    "     return ' '.fugitive#head()
-    "   else
-    "     return ''
-    " endfunction
-
-    " set laststatus=2
-    " set statusline=
-    " " set statusline+=%{ChangeStatuslineColor()}               " Changing the statusline color
-    " set statusline+=%0*\ %{toupper(g:currentmode[mode()])}   " Current mode
-    " set statusline+=%8*\ [%n]                                " buffernr
-    " set statusline+=%8*\ %{GitInfo()}                        " Git Branch name
-    " set statusline+=%8*\ %<%F\ %{ReadOnly()}\ %m\ %w\        " File+path
-    " set statusline+=%#warningmsg#
-    " set statusline+=%{SyntasticStatuslineFlag()}             " Syntastic errors
-    " set statusline+=%*
-    " set statusline+=%9*\ %=                                  " Space
-    " set statusline+=%8*\ %y\                                 " FileType
-    " set statusline+=%7*\ %{(&fenc!=''?&fenc:&enc)}\[%{&ff}]\ " Encoding & Fileformat
-    " set statusline+=%8*\ %-3(%{FileSize()}%)                 " File size
-    " set statusline+=%0*\ %3p%%\ Line\ %l:\ %3c\                 " Rownumber/total (%)
-
-    " hi User1 ctermfg=007
-    " hi User2 ctermfg=008
-    " hi User3 ctermfg=008
-    " hi User4 ctermfg=008
-    " hi User5 ctermfg=008
-    " hi User7 ctermfg=008
-    " hi User8 ctermfg=008
-    " hi User9 ctermfg=007
-    "}
+	set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
     " Allow to trigger background
     function! ToggleBG()
@@ -310,27 +179,35 @@
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum""]"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum""]"
 
+    set background=light  " Otherwise bright colors are lurid
     set t_Co=256
     if has('termguicolors')
         set background=dark
         set termguicolors
     endif
 
+    let ayucolor="mirage"   " for dark version of theme
+    colorscheme ayu
+    " color ron
+
+    hi VertSplit guibg=#272D38
+
+    " Make concealed operators readable in LaTeX
+    hi! link Conceal Operator
+
     " Make matched parens visually distinct from cursor
     hi MatchParen term=underline cterm=underline gui=underline guifg=NONE guibg=NONE
 
-    " Ayu theme settings {
-    " let ayucolor="mirage"
-    " colorscheme ayu
-    " Change gutter and vsplit color
-    " hi LineNr guibg=#272d38
-    " hi VertSplit guibg=#272D38
-    "}
+    " Change gutter color
+    hi LineNr guibg=#272d38
 
-    " Remove | char from vertical splits
-    set fillchars+=vert:\ 
-
-    color wildcherry
+    " make Esc happen without waiting for timeoutlen
+    " fixes Powerline delay
+    augroup FastEscape
+      autocmd!
+      au InsertEnter * set timeoutlen=0
+      au InsertLeave * set timeoutlen=1000
+    augroup END
 
 " Editing
 
@@ -345,9 +222,6 @@
 
     " Command <Tab> completion, list matches, then longest common part, then all.
     set wildmode=list:longest,full
-
-    " Folding
-    set foldnestmax=2
 
 " Filesystem
 
@@ -387,10 +261,9 @@
 
     let mapleader=" "   " Leader key to space
 
-    set timeoutlen=400 ttimeoutlen=0  " Less lag on waiting for key delays
-
-    " Avoid unnecessary hit-enter prompts.
-    set shortmess+=atI
+    " Exit insert mode with kj
+    inoremap jk <esc>
+    inoremap kj <esc>
 
     " Wrapped lines goes down/up to next row, rather than next line in file.
     noremap j gj
@@ -403,8 +276,6 @@
     xnoremap <leader>j :m'>+<cr>gv=gv
 
     " Code folding options
-    set foldlevel=2
-
     nmap <leader>f0 :set foldlevel=0<CR>
     nmap <leader>f1 :set foldlevel=1<CR>
     nmap <leader>f2 :set foldlevel=2<CR>
@@ -416,12 +287,13 @@
     nmap <leader>f8 :set foldlevel=8<CR>
     nmap <leader>f9 :set foldlevel=9<CR>
 
-    " Toggle search highlighting on/off quickly
+    " Toggle search highlighting instead of clearing
     nmap <silent> <leader>/ :set invhlsearch<CR>
 
     " Find merge conflict markers
     map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
+    " Shortcuts
     " Change Working Directory to that of the current file
     cmap cwd lcd %:p:h
     cmap cd. lcd %:p:h
@@ -474,10 +346,10 @@
     " vnoremap i$ T$ot$
 
     " Navigate splits
-    nnoremap <c-j> :TmuxNavigateDown<cr>
-    nnoremap <c-k> :TmuxNavigateUp<cr>
-    nnoremap <c-h> :TmuxNavigateLeft<cr>
-    nnoremap <c-l> :TmuxNavigateRight<cr>
+    nnoremap <c-j> <c-w>j
+    nnoremap <c-k> <c-w>k
+    nnoremap <c-h> <c-w>h
+    nnoremap <c-l> <c-w>l
 
 " Plugins
 
@@ -520,19 +392,6 @@
             autocmd FileType rust,c,ch,json,java,sass,javascript,css nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
             autocmd FileType rust,c,ch,json,java,sass,javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
         augroup END
-    endif
-
-    " VimTmuxRunner
-    let g:VtrGitCdUpOnOpen = 1
-    let g:VtrOrientation = 'h'
-
-    " indent line
-    if isdirectory(expand('~/.vim/bundle/indentLine'))
-        let g:indentLine_char = '┆'
-        let g:indentLine_first_char = '┆'
-        let g:indentLine_showFirstIndentLevel = 0
-        let g:indentLine_color_term = 59
-        let g:indentLine_color_gui = '#403545'
     endif
 
     " YouCompleteMe
@@ -631,21 +490,6 @@
 "         let g:syntastic_check_on_wq = 0
 "     endif
 
-    " Lightline
-    if isdirectory(expand('~/.vim/bundle/lightline.vim'))
-        let g:lightline#bufferline#show_number = 1
-        let g:lightline#bufferline#shorten_path = 1
-        let g:lightline#bufferline#unnamed = '[No Name]'
-        let g:lightline = {
-                    \ 'colorscheme': 'Dracula',
-                    \ 'tabline': { 'left': [['buffers']], 'right': [['close']] },
-                    \ 'component_expand': {'buffers': 'lightline#bufferline#buffers'},
-                    \ 'component_type': {'buffers': 'tabsel'},
-                    \ 'separator': { 'left': '', 'right': '' },
-                    \ 'subseparator': { 'left': '', 'right': '' }
-                    \ }
-    endif
-
     " Airline
     if isdirectory(expand('~/.vim/bundle/vim-airline'))
         let g:airline_powerline_fonts = 1  " Auto populate g:airline_symbols dictionary
@@ -656,29 +500,20 @@
         let g:airline_left_sep = ''
         let g:airline#extensions#tabline#enabled = 1      " Enable the list of buffers
         let g:airline#extensions#tabline#fnamemod = ':t'  " Show just the filename
-        let g:airline_extensions = []
-        " let g:airline_extensions = ['tabline']
+        let g:airline_extensions = ['tabline']
     endif
 
     " fzf
     if isdirectory(expand('~/.vim/bundle/fzf.vim'))
-        " Similarly, we can apply it to fzf#vim#grep. 
-        command! -bang -nargs=* Rg
-                    \ call fzf#vim#grep(
-          \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-          \   <bang>0 ? fzf#vim#with_preview('up:60%')
-          \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-          \   <bang>0)
-
-        " Open files in current git repo
         nnoremap <leader>p :GFiles<cr>
-
-        " Open files in cwd
         nnoremap <leader>o :Files<cr>
+        " let g:fzf_action = {
+        "     \ 'ctrl-t': 'tab split',
+        "     \ 'ctrl-x': 'split',
+        "     \ 'ctrl-v': 'vsplit' }
     endif
 
     " JSON
     set conceallevel=0
     let g:vim_json_syntax_conceal = 0
-
 
