@@ -70,7 +70,7 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 defaults write com.apple.screencapture location -string "${HOME}/Pictures/Screenshots"
 
 # Disable shadow in screenshots
-defaults write com.apple.screencapture disable-shadow -bool true
+# defaults write com.apple.screencapture disable-shadow -bool true
 
 ###################################################################
 # Keyboard                                                        #
