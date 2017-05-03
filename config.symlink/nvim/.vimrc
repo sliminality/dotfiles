@@ -444,6 +444,7 @@
     " vim-surround
     if isdirectory(expand('~/.vim/bundle/vim-surround'))
         let g:surround_33 = "```\r```"
+        let g:surround_96 = "`\r`"
     endif
 
     " NERDTree
