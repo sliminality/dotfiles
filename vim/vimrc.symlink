@@ -9,10 +9,10 @@
     Plugin 'VundleVim/Vundle.vim'  " required
 
     " Syntax and inference tooling
-    Plugin 'mattn/webapi-vim'
-    Plugin 'scrooloose/syntastic'
     Plugin 'flowtype/vim-flow'
     if !exists('g:actualvim')
+        " Plugin 'scrooloose/syntastic'
+        Plugin 'w0rp/ale'
         Plugin 'Valloric/YouCompleteMe'
     endif
 
@@ -33,6 +33,7 @@
     endif
 
     " Editing
+    Plugin 'file:///Users/sarah/git/vim-iterm2-navigator'
     Plugin 'lfilho/cosco.vim'
     Plugin 'tpope/vim-surround'
     Plugin 'jiangmiao/auto-pairs'
@@ -48,9 +49,11 @@
     " Language specific support
     Plugin 'elzr/vim-json'
     Plugin 'pangloss/vim-javascript'
-    Plugin 'mxw/vim-jsx'
+    Plugin 'neoclide/vim-jsx-improve'
+    " Plugin 'mxw/vim-jsx'
     " Plugin 'kchmck/vim-coffee-script'
     Plugin 'hail2u/vim-css3-syntax'
+    Plugin 'digitaltoad/vim-pug'
     Plugin 'rust-lang/rust.vim'
     " Plugin 'wlangstroth/vim-racket'
 
@@ -96,7 +99,7 @@
 
     augroup SyntaxSettings
         autocmd!
-        autocmd FileType html,javascript,haskell,yaml,json,css setlocal shiftwidth=2 softtabstop=2 tabstop=2
+        autocmd FileType html,javascript,haskell,yaml,json,css,scss,pug setlocal shiftwidth=2 softtabstop=2 tabstop=2
         autocmd BufNewFile,BufRead *.coffee set filetype=coffee
         autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=yaml
         autocmd BufNewFile,BufRead *.eslintrc,*.babelrc set filetype=json
@@ -320,17 +323,17 @@
     hi MatchParen term=underline cterm=underline gui=underline guifg=NONE guibg=NONE
 
     " Ayu theme settings {
-    " let ayucolor="mirage"
-    " colorscheme ayu
-    " Change gutter and vsplit color
-    " hi LineNr guibg=#272d38
-    " hi VertSplit guibg=#272D38
-    "}
+     let ayucolor="mirage"
+     colorscheme ayu
+     " Change gutter and vsplit color
+     hi LineNr guibg=#272d38
+     hi VertSplit guibg=#272D38
+"    }
 
     " Remove | char from vertical splits
     set fillchars+=vert:\ 
 
-    color wildcherry
+    " color wildcherry
 
 " Editing
 
@@ -387,7 +390,7 @@
 
     let mapleader=" "   " Leader key to space
 
-    set timeoutlen=400 ttimeoutlen=0  " Less lag on waiting for key delays
+    set timeoutlen=500 ttimeoutlen=0  " Less lag on waiting for key delays
 
     " Avoid unnecessary hit-enter prompts.
     set shortmess+=atI
@@ -450,9 +453,10 @@
     " Close the current buffer and move to the previous one
     " This replicates the idea of closing a tab
     nmap <leader>w :bp <BAR> bd #<CR>
+    nmap <leader>W :bdelete!<CR>
 
     " Show all open buffers and their status
-    nmap <leader>bl :ls<CR>
+    nmap <leader>bl :Buffers<CR>
 
     " Copy to system keyboard
     vnoremap <C-c> "*y
@@ -492,6 +496,12 @@
             \ ]
     endif
 
+    " GitGutter
+    if isdirectory(expand('~/.vim/bundle/vim-gitgutter'))
+        let g:gitgutter_override_sign_column_highlight = 0
+        highlight SignColumn guibg=#272d38
+    endif
+
     " vimtex
     if isdirectory(expand('~/.vim/bundle/vimtex'))
         let g:vimtex_complete_close_braces = 1
@@ -522,6 +532,14 @@
         augroup END
     endif
 
+    " Rust
+    if isdirectory(expand('~/.vim/bundle/rust.vim'))
+        augroup RustRun
+            autocmd!
+            autocmd FileType rust nnoremap <C-r> :RustRun<CR>
+        augroup END
+    endif
+
     " VimTmuxRunner
     let g:VtrGitCdUpOnOpen = 1
     let g:VtrOrientation = 'h'
@@ -549,6 +567,7 @@
         augroup FlowGoTo
             autocmd!
             autocmd FileType javascript nnoremap <Leader>] :FlowJumpToDef<CR>
+            autocmd FileType javascript nnoremap <Leader>[ :FlowType<CR>
         augroup END
     endif
 
@@ -569,7 +588,7 @@
             autocmd FileType java let b:dispatch = 'javac %'
             autocmd FileType python let b:dispatch = 'python %'
             autocmd FileType racket,scheme let b:dispatch = 'racket %'
-            autocmd FileType javascript let b:dispatch = 'node %'
+            autocmd FileType javascript let b:dispatch = 'yarn build'
         augroup END
 
         " Map :Dispatch
@@ -590,7 +609,18 @@
     " NERDTree
     if isdirectory(expand("~/.vim/bundle/nerdtree"))
         let NERDTreeShowHidden=1
-        let NERDTreeIgnore=['\.DS_Store', '\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', 'node_modules']
+        let NERDTreeIgnore=[
+            \ '\.DS_Store',
+            \ '\.py[cd]$',
+            \ '\~$', '\.swo$',
+            \ '\.swp$',
+            \ '^\.git$',
+            \ '^\.hg$',
+            \ '^\.svn$',
+            \ '\.bzr$',
+            \ 'node_modules',
+            \ 'perseus\/\.\+\.css$'
+            \ ]
         let NERDTreeMouseMode=2  " Single click to open directories
         let NERDTreeChDirMode=2  " cwd when NERDTree root changes
         nmap <leader>e :NERDTreeToggle<CR>
@@ -619,17 +649,25 @@
         vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     endif
 
-"     " Syntastic
-"     if isdirectory(expand('~/.vim/bundle/syntastic'))
-"         " set statusline+=%#warningmsg#
-"         " set statusline+=%{SyntasticStatuslineFlag()}
-"         " set statusline+=%*
+    " ALE
+    if isdirectory(expand('~/.vim/bundle/ale'))
+        " let g:ale_lint_on_text_changed = 'never'
+        " let g:ale_linters = {
+        " \   'javascript': ['eslint'],
+        " \}
+    endif
 
-"         let g:syntastic_always_populate_loc_list = 1
-"         let g:syntastic_auto_loc_list = 1
-"         let g:syntastic_check_on_open = 1
-"         let g:syntastic_check_on_wq = 0
-"     endif
+"     " Syntastic
+    if isdirectory(expand('~/.vim/bundle/syntastic'))
+        " set statusline+=%#warningmsg#
+        " set statusline+=%{SyntasticStatuslineFlag()}
+        " set statusline+=%*
+
+        let g:syntastic_always_populate_loc_list = 1
+        let g:syntastic_auto_loc_list = 1
+        let g:syntastic_check_on_open = 1
+        let g:syntastic_check_on_wq = 0
+    endif
 
     " Lightline
     if isdirectory(expand('~/.vim/bundle/lightline.vim'))
@@ -637,7 +675,7 @@
         let g:lightline#bufferline#shorten_path = 1
         let g:lightline#bufferline#unnamed = '[No Name]'
         let g:lightline = {
-                    \ 'colorscheme': 'Dracula',
+                    \ 'colorscheme': 'powerline',
                     \ 'tabline': { 'left': [['buffers']], 'right': [['close']] },
                     \ 'component_expand': {'buffers': 'lightline#bufferline#buffers'},
                     \ 'component_type': {'buffers': 'tabsel'},

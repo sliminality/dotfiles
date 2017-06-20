@@ -99,3 +99,5 @@ source ~/k/k.sh
 
 # Powerline
 # . /Users/sarah/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
