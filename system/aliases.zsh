@@ -82,5 +82,7 @@ alias google-chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chr
 ############################################
 
 alias murphy='ssh scl025@murphy.wot.eecs.northwestern.edu'
+alias hanlon='ssh scl025@hanlon.wot.eecs.northwestern.edu'
+alias logine='ssh scl025@login.eecs.northwestern.edu'
 
 
