@@ -566,6 +566,17 @@
     " vim-flow
     if isdirectory(expand('~/.vim/bundle/vim-flow'))
         let g:flow#enable = 0
+
+        " Use local flow binary
+        let local_flow = finddir('node_modules', ';') . '/.bin/flow'
+
+        if matchstr(local_flow, "^\/\\w") == ''
+            let local_flow= getcwd() . "/" . local_flow
+        endif
+        if executable(local_flow)
+            let g:flow#flowpath = local_flow
+        endif
+
         augroup FlowGoTo
             autocmd!
             autocmd FileType javascript nnoremap <Leader>] :FlowJumpToDef<CR>
