@@ -324,12 +324,13 @@
     hi MatchParen term=underline cterm=underline gui=underline guifg=NONE guibg=NONE
 
     " Ayu theme settings {
-     let ayucolor="mirage"
-     colorscheme ayu
-     " Change gutter and vsplit color
-     hi LineNr guibg=#272d38
-     hi VertSplit guibg=#272D38
-"    }
+    if isdirectory(expand('~/.vim/bundle/ayu-vim'))
+        let ayucolor="mirage"
+        colorscheme ayu
+        " Change gutter and vsplit color
+        hi LineNr guibg=#272d38
+        hi VertSplit guibg=#272D38
+    endif
 
     " Remove | char from vertical splits
     set fillchars+=vert:\ 
