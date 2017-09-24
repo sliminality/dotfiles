@@ -63,6 +63,9 @@ function chpwd () {
   ls
 }
 
+# Use regular emacs line bindings
+bindkey -e
+
 # Source z
 
 # if [[ -s "$HOME/z/z.sh" ]]; then
