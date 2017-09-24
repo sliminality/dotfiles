@@ -668,6 +668,9 @@
         " let g:ale_linters = {
         " \   'javascript': ['eslint'],
         " \}
+
+        nmap <silent> [e <Plug>(ale_previous_wrap)
+        nmap <silent> ]e <Plug>(ale_next_wrap)
     endif
 
 "     " Syntastic
