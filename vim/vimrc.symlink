@@ -113,7 +113,7 @@
         endif
 
         au BufNewFile,BufRead *.mdown,*.mkd,*.md set filetype=tex
-        au BufNewFile,BufRead *.mdown,*.md set syntax=pandoc
+        " au BufNewFile,BufRead *.mdown,*.md set syntax=pandoc
     augroup END
 
     let g:tex_flavor = 'latex'
