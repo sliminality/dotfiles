@@ -33,7 +33,6 @@
     endif
 
     " Editing
-    Plugin 'file:///Users/sarah/git/vim-iterm2-navigator'
     Plugin 'lfilho/cosco.vim'
     Plugin 'tpope/vim-surround'
     Plugin 'jiangmiao/auto-pairs'
