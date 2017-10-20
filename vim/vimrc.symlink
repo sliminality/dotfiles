@@ -47,6 +47,7 @@
 
     " Language specific support
     Plugin 'elzr/vim-json'
+    Plugin 'octol/vim-cpp-enhanced-highlight'
     Plugin 'pangloss/vim-javascript'
     Plugin 'neoclide/vim-jsx-improve'
     " Plugin 'mxw/vim-jsx'
@@ -529,8 +530,8 @@
     if isdirectory(expand('~/.vim/bundle/cosco.vim'))
         augroup AppendSemicolon
             autocmd!
-            autocmd FileType rust,c,ch,json,java,sass,javascript,css nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
-            autocmd FileType rust,c,ch,json,java,sass,javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
+            autocmd FileType rust,c,cpp,ch,json,java,sass,javascript,css nmap <silent> <Leader>; <Plug>(cosco-commaOrSemiColon)
+            autocmd FileType rust,c,cpp,ch,json,java,sass,javascript,css imap <silent> <Leader>; <c-o><Plug>(cosco-commaOrSemiColon)
         augroup END
     endif
 
