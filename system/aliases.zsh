@@ -75,7 +75,7 @@ alias gr='git rev-parse --show-toplevel'
 ############################################
 
 alias google-chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-
+alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --remote-debugging-port=9222'
 
 ############################################
 # SSH
