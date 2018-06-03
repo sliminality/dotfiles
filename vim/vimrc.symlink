@@ -545,6 +545,7 @@
     endif
 
     " Tabularize
+    vmap <Leader>aa :!column -t<CR>
     if isdirectory(expand("~/.vim/bundle/tabular"))
         nmap <Leader>a& :Tabularize /&<CR>
         vmap <Leader>a& :Tabularize /&<CR>
