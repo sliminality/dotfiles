@@ -95,8 +95,8 @@
 
     set expandtab       " Use spaces instead of tabs
     set smarttab        " Be smart when using tabs
-    set shiftwidth=4    " 1 tab == 4 spaces
-    set tabstop=4
+    set shiftwidth=2    " 1 tab == 4 spaces
+    set tabstop=2
 
     augroup SyntaxSettings
         autocmd!
