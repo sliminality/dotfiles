@@ -188,6 +188,14 @@
 
     set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
+    nmap <leader>sp :call <SID>SynStack()<CR>
+    function! <SID>SynStack()
+      if !exists("*synstack")
+        return
+      endif
+      echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+    endfunc
+
     " Lightweight status line to replace Airline {
     " https://gabri.me/blog/diy-vim-statusline
     " let g:currentmode = {
