@@ -52,8 +52,7 @@
     Plugin 'octol/vim-cpp-enhanced-highlight'
     Plugin 'pangloss/vim-javascript'
     Plugin 'neoclide/vim-jsx-improve'
-    " Plugin 'mxw/vim-jsx'
-    " Plugin 'kchmck/vim-coffee-script'
+    Plugin 'kchmck/vim-coffee-script'
     Plugin 'hail2u/vim-css3-syntax'
     Plugin 'digitaltoad/vim-pug'
     Plugin 'rust-lang/rust.vim'
@@ -62,6 +61,7 @@
 
     " Markdown and writing
     Plugin 'godlygeek/tabular'
+    Plugin 'JamshedVesuna/vim-markdown-preview'
     " Plugin 'plasticboy/vim-markdown'
     Plugin 'vim-pandoc/vim-pandoc'
     Plugin 'vim-pandoc/vim-pandoc-syntax'
@@ -645,4 +645,14 @@
     set conceallevel=0
     let g:vim_json_syntax_conceal = 0
 
+    " vim-markdown-preview
+    if isdirectory(expand('~/.vim/bundle/vim-markdown-preview'))
+      " let vim_markdown_preview_github=1
+      let vim_markdown_preview_pandoc=1
 
+      " Disregard images and preview on :w
+      " let vim_markdown_preview_toggle=3
+
+      " Render images automatically on buffer write
+      let vim_markdown_preview_toggle=2
+    endif
