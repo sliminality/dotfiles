@@ -40,6 +40,7 @@ path=(
   $path
   $HOME/Library/Python/2.7/bin
   $HOME/.cargo/bin
+  $HOME/anaconda3/bin
 )
 
 # load everything but the path and completion files
