@@ -1,2 +1,4 @@
 git/gitconfig.local.symlink
+config.symlink/yarn
+config.symlink/configstore
 config.symlink/hub
