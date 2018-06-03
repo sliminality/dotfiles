@@ -19,6 +19,7 @@
     " UI extensions
     if !exists('g:actualvim')
         Plugin 'sarahlim/wild-cherry-vim'
+        Plugin 'rainglow/vim'
         Plugin 'ayu-theme/ayu-vim'
         Plugin 'altercation/vim-colors-solarized'
         Plugin 'scrooloose/nerdtree'
@@ -323,16 +324,29 @@
         set termguicolors
     endif
 
-    " Make matched parens visually distinct from cursor
-    hi MatchParen term=underline cterm=underline gui=underline guifg=NONE guibg=NONE
+    colorscheme rainbow-contrast
+    hi  GitGutterAddDefault    guifg=#a7da1e guibg=#0a0b0c
+    hi  GitGutterChangeDefault guifg=#f7b83d guibg=#0a0b0c
+    hi  GitGutterDeleteDefault guifg=#e61f44 guibg=#0a0b0c
+    hi  SignColumn             guibg=#0a0b0c
 
     " Ayu theme settings {
-    if isdirectory(expand('~/.vim/bundle/ayu-vim'))
+    if !exists('g:actualvim')
+      if isdirectory(expand('~/.vim/bundle/ayu-vim'))
         let ayucolor="mirage"
-        colorscheme ayu
+        " colorscheme ayu
+
         " Change gutter and vsplit color
-        hi LineNr guibg=#272d38
-        hi VertSplit guibg=#272D38
+        " hi  LineNr                  guibg=#272d38
+        " hi  VertSplit               guibg=#272d38
+        " hi  SignColumn              guibg=#272d38
+        " hi  GitGutterAddDefault     guibg=#272d38
+        " hi  GitGutterChangeDefault  guibg=#272d38
+        " hi  GitGutterDeleteDefault  guibg=#272d38
+
+        " Highlight directories in yellow
+        " hi  NERDTreeDir ctermfg=11 guifg=#FFCC66 guibg=#242B38
+      endif
     endif
 
     " Remove | char from vertical splits
@@ -503,8 +517,7 @@
 
     " GitGutter
     if isdirectory(expand('~/.vim/bundle/vim-gitgutter'))
-        let g:gitgutter_override_sign_column_highlight = 0
-        highlight SignColumn guibg=#272d38
+        " let g:gitgutter_override_sign_column_highlight = 0
     endif
 
     " vimtex
@@ -640,9 +653,6 @@
         let NERDTreeMouseMode=2  " Single click to open directories
         let NERDTreeChDirMode=2  " cwd when NERDTree root changes
         nmap <leader>e :NERDTreeToggle<CR>
-
-        " Highlight directories in yellow
-        hi NERDTreeDir ctermfg=11 guifg=#FFCC66 guibg=#242B38
     endif
 
     " Tabularize
