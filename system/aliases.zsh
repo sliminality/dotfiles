@@ -85,4 +85,8 @@ alias murphy='ssh scl025@murphy.wot.eecs.northwestern.edu'
 alias hanlon='ssh scl025@hanlon.wot.eecs.northwestern.edu'
 alias logine='ssh scl025@login.eecs.northwestern.edu'
 
+############################################
+# fasd
+############################################
 
+alias v='f -e nvim' # quick opening files with vim
