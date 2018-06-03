@@ -13,6 +13,7 @@
     if !exists('g:actualvim')
         " Plugin 'scrooloose/syntastic'
         Plugin 'w0rp/ale'
+        Plugin 'prettier/vim-prettier'
         Plugin 'Valloric/YouCompleteMe'
     endif
 
@@ -632,6 +633,12 @@
 
         " Open files in cwd
         nnoremap <leader>o :Files<cr>
+    endif
+
+    " Prettier
+    if isdirectory(expand('~/.vim/bundle/vim-prettier'))
+      let g:prettier#config#bracket_spacing = 'true'
+      let g:prettier#config#jsx_bracket_same_line = 'false'
     endif
 
     " JSON
