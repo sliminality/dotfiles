@@ -221,6 +221,7 @@
     endif
 
     set t_Co=256
+    set t_ut=
     if has('termguicolors')
         set background=dark
         set termguicolors
