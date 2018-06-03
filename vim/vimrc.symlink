@@ -505,7 +505,7 @@
         augroup END
 
         " Map :Dispatch
-        nnoremap <leader>b :Dispatch<CR>
+        nnoremap <leader>b :Dispatch!<CR>
     endif
 
     " AutoPairs
