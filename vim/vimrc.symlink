@@ -458,7 +458,7 @@
     if isdirectory(expand('~/.vim/bundle/YouCompleteMe'))
         augroup YCMGoTo
             autocmd!
-            autocmd FileType rust,c,ch,sass,css,json,java nnoremap <Leader>] :YcmCompleter GoTo<CR>
+            autocmd FileType rust,c,cpp,ch,sass,css,json,java,python nnoremap <Leader>] :YcmCompleter GoTo<CR>
         augroup END
     endif
 
