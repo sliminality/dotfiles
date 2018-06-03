@@ -36,7 +36,7 @@ path=(
   /{bin,sbin}
   /Library/TeX/texbin
   /usr/local/go/bin
-  /Applications/Racket v6.4/bin
+  /Applications/Racket\ v6.10.1/bin
   $path
   $HOME/Library/Python/2.7/bin
   $HOME/.cargo/bin
