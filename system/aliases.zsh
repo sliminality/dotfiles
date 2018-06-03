@@ -55,6 +55,9 @@ alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade --all; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update'
 
+# Send a push notification when a job is complete (requires terminal-notifier)
+alias tn='terminal-notifier -message'
+
 ############################################
 # git
 ############################################
