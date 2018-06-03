@@ -105,14 +105,7 @@
         autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=yaml
         autocmd BufNewFile,BufRead *.eslintrc,*.babelrc set filetype=json
 
-        " Use Prettier to format JavaScript
-        if !exists('g:actualvim')
-            autocmd FileType javascript.jsx,javascript setlocal formatprg=prettier\ --stdin\ --parser\ flow\ --print-width\ 80\ --trailing-comma\ es5\ --single-quote\ true
-            autocmd BufWritePre *.js
-            \   exe "set cmdheight=2"
-            \ | exe "normal! gggqG\<C-o>\<C-o><CR>"
-            \ | exe "set cmdheight=1"
-        endif
+        autocmd FileType ocaml setlocal commentstring=#\ %s
 
         au BufNewFile,BufRead *.mdown,*.mkd,*.md set filetype=tex
         " au BufNewFile,BufRead *.mdown,*.md set syntax=pandoc
