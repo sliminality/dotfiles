@@ -55,7 +55,7 @@
     Plugin 'hail2u/vim-css3-syntax'
     Plugin 'digitaltoad/vim-pug'
     Plugin 'rust-lang/rust.vim'
-    " Plugin 'wlangstroth/vim-racket'
+    Plugin 'wlangstroth/vim-racket'
     Plugin 'rhysd/vim-wasm'
 
     " Markdown and writing
