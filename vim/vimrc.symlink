@@ -441,14 +441,6 @@
         augroup END
     endif
 
-    " Rust
-    if isdirectory(expand('~/.vim/bundle/rust.vim'))
-        augroup RustRun
-            autocmd!
-            autocmd FileType rust nnoremap <C-r> :RustRun<CR>
-        augroup END
-    endif
-
     " VimTmuxRunner
     let g:VtrGitCdUpOnOpen = 1
     let g:VtrOrientation = 'h'
@@ -506,6 +498,7 @@
         augroup Dispatch
             autocmd!
             autocmd FileType java let b:dispatch = 'javac %'
+            autocmd FileType rust let b:dispatch = 'cargo run'
             autocmd FileType python let b:dispatch = 'python %'
             autocmd FileType racket,scheme let b:dispatch = 'racket %'
             autocmd FileType javascript let b:dispatch = 'yarn build'
@@ -517,8 +510,13 @@
 
     " AutoPairs
     if isdirectory(expand('~/.vim/bundle/auto-pairs'))
-        let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`',
+        let g:AutoPairs = { '(':')', '[':']', '{':'}', "'":"'",'"':'"', '`':'`',
             \ } " '$': '$' }
+
+        augroup AutoPairs
+            autocmd!
+            autocmd FileType rust,racket,scheme let b:AutoPairs = { '(':')', '[':']', '{':'}', '"':'"', '`':'`', }
+        augroup END
     endif
 
     " vim-surround
