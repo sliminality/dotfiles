@@ -113,4 +113,9 @@ alias less='less -m -N -g -i  --underline-special --SILENT'
 # Powerline
 # . /Users/sarah/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
 
+# iTerm 2 status bar
+echo -e "\033]6;1;bg;red;brightness;29\a"
+echo -e "\033]6;1;bg;green;brightness;32\a"
+echo -e "\033]6;1;bg;blue;brightness;34\a"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
