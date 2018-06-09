@@ -108,7 +108,8 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*" --
 # brew install source-highlight
 export LESSOPEN="| src-hilite-lesspipe.sh %s"
 export LESS=" -R "
-alias less='less -m -N -g -i  --underline-special --SILENT'
+export LESSCHARSET="utf-8"
+alias less='less -m -N -g -i -r --underline-special --SILENT'
 
 # Powerline
 # . /Users/sarah/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
