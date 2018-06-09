@@ -73,6 +73,15 @@ alias gd='git diff'
 alias go='git checkout '
 alias gr='git rev-parse --show-toplevel'
 
+git() {
+  if [[ $@ == "wip" ]]; then
+    command git add -u
+    command git commit -m "🌱"
+  else
+    command git "$@"
+  fi
+}
+
 ############################################
 # Chrome
 ############################################
