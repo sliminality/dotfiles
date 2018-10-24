@@ -14,6 +14,7 @@
         " Plugin 'scrooloose/syntastic'
         Plugin 'w0rp/ale'
         Plugin 'prettier/vim-prettier'
+        Plugin 'nbouscal/vim-stylish-haskell'
         Plugin 'Valloric/YouCompleteMe'
     endif
 
@@ -58,6 +59,9 @@
     Plugin 'rust-lang/rust.vim'
     Plugin 'wlangstroth/vim-racket'
     Plugin 'rhysd/vim-wasm'
+    Plugin 'neovimhaskell/haskell-vim'
+    Plugin 'itchyny/vim-haskell-indent'
+    Plugin 'reasonml-editor/vim-reason-plus'
 
     " Markdown and writing
     Plugin 'godlygeek/tabular'
@@ -644,6 +648,12 @@
     if isdirectory(expand('~/.vim/bundle/vim-prettier'))
       let g:prettier#config#bracket_spacing = 'true'
       let g:prettier#config#jsx_bracket_same_line = 'false'
+    endif
+
+
+    if isdirectory(expand('~/.vim/bundle/haskell-vim'))
+      let g:haskell_indent_where = 4
+      let g:haskell_indent_guard = 2
     endif
 
     " JSON
