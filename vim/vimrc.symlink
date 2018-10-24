@@ -454,6 +454,7 @@
         let g:indentLine_showFirstIndentLevel = 0
         let g:indentLine_color_term = 59
         let g:indentLine_color_gui = '#403545'
+        let g:indentLine_conceallevel = 0
     endif
 
     " YouCompleteMe
