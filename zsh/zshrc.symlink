@@ -124,6 +124,11 @@ echo -e "\033]6;1;bg;blue;brightness;34\a"
 # OPAM configuration
 . /Users/sarah/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
+# Nix
+if [ -e /Users/sarahlim/.nix-profile/etc/profile.d/nix.sh ]; then
+  . /Users/sarahlim/.nix-profile/etc/profile.d/nix.sh;
+fi
+
 # Start tmux on login
 if [ -z "$TMUX" ]
 then
