@@ -4,4 +4,4 @@ if [[ "$OSTYPE" == darwin* ]]; then
 fi
 
 # Editor
-export EDITOR='/usr/local/bin/vim'
+export EDITOR=$(which vim)
