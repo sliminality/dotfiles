@@ -668,8 +668,18 @@
 
     " Prettier
     if isdirectory(expand('~/.vim/bundle/vim-prettier'))
-      let g:prettier#config#bracket_spacing = 'true'
-      let g:prettier#config#jsx_bracket_same_line = 'false'
+        " Personal config
+        " let g:prettier#config#bracket_spacing = 'true'
+        " let g:prettier#config#jsx_bracket_same_line = 'false'
+
+        " Use Prettier (not vim-prettier) defaults, except for KA specific ones.
+        " https://github.com/prettier/vim-prettier#overwrite-default-prettier-configuration
+        let g:prettier#config#tab_width = 4
+        let g:prettier#config#bracket_spacing = 'false'
+        let g:prettier#config#jsx_bracket_same_line = 'false'
+        let g:prettier#config#trailing_comma = 'all'
+        let g:prettier#config#single_quote = 'false'
+        let g:prettier#config#config_precedence = 'file-override'
     endif
 
 
