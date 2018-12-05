@@ -28,6 +28,7 @@ Thumbs.db
 
 # vim swap files
 .*.sw?
+Session.vim
 
 # SVG image files
 *.svg

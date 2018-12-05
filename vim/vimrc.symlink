@@ -13,8 +13,8 @@
     if !exists('g:actualvim')
         " Plugin 'scrooloose/syntastic'
         Plugin 'w0rp/ale'
-        Plugin 'prettier/vim-prettier'
-        Plugin 'nbouscal/vim-stylish-haskell'
+        Plugin 'prettier/vim-prettier', { 'do': 'npm install' }
+        " Plugin 'nbouscal/vim-stylish-haskell'
         Plugin 'Valloric/YouCompleteMe'
     endif
 
@@ -671,6 +671,13 @@
         " Personal config
         " let g:prettier#config#bracket_spacing = 'true'
         " let g:prettier#config#jsx_bracket_same_line = 'false'
+
+        " Format all files on save.
+        let g:prettier#autoformat = 0
+        augroup Prettier
+            autocmd!
+            autocmd BufWritePre *.js,*.css,*.scss,*.less,*.graphql PrettierAsync
+        augroup END
 
         " Use Prettier (not vim-prettier) defaults, except for KA specific ones.
         " https://github.com/prettier/vim-prettier#overwrite-default-prettier-configuration
