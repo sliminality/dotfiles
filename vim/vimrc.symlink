@@ -282,7 +282,14 @@
     set wildmode=list:longest,full
 
     " Folding
-    set foldnestmax=2
+    augroup FoldLevel
+        autocmd!
+        autocmd FileType javascript set foldmethod=syntax
+        autocmd FileType javascript set foldlevel=0
+        autocmd FileType javascript set foldnestmax=1
+
+        autocmd BufNewFile,BufRead *.jsx set foldnestmax=2
+    augroup END
 
 " Filesystem
 
