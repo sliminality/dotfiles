@@ -31,6 +31,7 @@ done
 path=(
   $HOME/.tilde/{bin,sbin}
   $HOME/.tilde/opt/{bin,sbin}
+  /Users/sarahlim/.local/bin
   /usr/local/{bin,sbin}
   /usr/{bin,sbin}
   /{bin,sbin}
@@ -104,6 +105,11 @@ eval "$(fasd --init posix-alias zsh-hook)"
 # fzf defaults
 export FZF_DEFAULT_OPTS="--height 40% --border --bind alt-j:down,alt-k:up"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*" --glob "!^(Caches|\.npm)/*"'
+
+# Add fzf shell bindings when installed via nix.
+if [ -n "${commands[fzf-share]}" ]; then
+    source "$(fzf-share)/key-bindings.zsh"
+fi
 
 # Syntax-highlighted less
 # brew install source-highlight
