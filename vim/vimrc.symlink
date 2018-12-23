@@ -223,16 +223,22 @@
     " set Vim-specific sequences for RGB colors
     " necessary for tmux + vim to work
     if has('termguicolors')
+        " Force true colour on, since Vim can’t detect it within tmux.
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum""]"
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum""]"
     endif
 
     set t_Co=256
+
     set t_ut=
     if has('termguicolors')
         set background=dark
+        " Will result in no colours inside tmux.
         set termguicolors
     endif
+
+    " Neovim: use straight cursor for insert mode
+    set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
 
     colorscheme rainbow-contrast
     hi  GitGutterAddDefault    guifg=#a7da1e guibg=#0a0b0c
