@@ -106,17 +106,15 @@
 
     set expandtab       " Use spaces instead of tabs
     set smarttab        " Be smart when using tabs
-    set shiftwidth=2    " 1 tab == 4 spaces
-    set tabstop=2
+    set shiftwidth=4    " 1 tab == 4 spaces
+    set tabstop=4
 
     augroup SyntaxSettings
         autocmd!
-        autocmd FileType html,javascript,haskell,yaml,json,css,scss,pug setlocal shiftwidth=2 softtabstop=2 tabstop=2
+        autocmd FileType html,javascript,haskell,yaml,json,css,scss,pug setlocal shiftwidth=4 softtabstop=4 tabstop=4
         autocmd BufNewFile,BufRead *.coffee set filetype=coffee
         autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=yaml
         autocmd BufNewFile,BufRead *.eslintrc,*.babelrc set filetype=json
-
-        autocmd FileType ocaml setlocal commentstring=#\ %s
 
         " au BufNewFile,BufRead *.mdown,*.mkd,*.md set filetype=tex
         " au BufNewFile,BufRead *.mdown,*.md set syntax=pandoc
@@ -477,11 +475,15 @@
     endif
 
     " YouCompleteMe
+    " let g:python_host_prog = '~/.virtualenv/neovim2/bin/python'
+    let g:python3_host_prog = '/Users/sarahlim/.virtualenv/neovim3/bin/python'
+
     if isdirectory(expand('~/.vim/bundle/YouCompleteMe'))
         augroup YCMGoTo
             autocmd!
             autocmd FileType rust,c,cpp,ch,sass,css,json,java,python nnoremap <Leader>] :YcmCompleter GoTo<CR>
         augroup END
+        set completeopt-=preview
     endif
 
     " vim-flow
