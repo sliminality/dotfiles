@@ -262,7 +262,7 @@
     endif
 
     " Make matched parens visually distinct from cursor
-    hi MatchParen term=underline cterm=underline gui=underline guifg=NONE guibg=NONE
+    hi MatchParen gui=underline guifg=NONE guibg=NONE
 
     " Remove | char from vertical splits
     set fillchars+=vert:\ 
