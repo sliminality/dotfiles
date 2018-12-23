@@ -20,18 +20,15 @@
 
     " UI extensions
     if !exists('g:actualvim')
-        Plugin 'sarahlim/wild-cherry-vim'
-        Plugin 'rainglow/vim'
-        Plugin 'ayu-theme/ayu-vim'
-        Plugin 'altercation/vim-colors-solarized'
+        " Plugin 'sarahlim/wild-cherry-vim'
+        Plugin 'sarahlim/vim'
+        " Plugin 'ayu-theme/ayu-vim'
         Plugin 'scrooloose/nerdtree'
-        " Plugin 'vim-airline/vim-airline'
         Plugin 'itchyny/lightline.vim'
         Plugin 'mgee/lightline-bufferline'
         Plugin 'tpope/vim-fugitive'
-        Plugin 'Yggdroot/indentLine'
         Plugin 'airblade/vim-gitgutter'
-        Plugin 'christoomey/vim-tmux-runner'
+        " Plugin 'christoomey/vim-tmux-runner'
         Plugin 'christoomey/vim-tmux-navigator'
     endif
 
@@ -49,11 +46,10 @@
     Plugin 'terryma/vim-multiple-cursors'
 
     " Language specific support
-    Plugin 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
+    " Plugin 'autozimu/LanguageClient-neovim', {
+    " \ 'branch': 'next',
+    " \ 'do': 'bash install.sh',
+    " \ }
     Plugin 'elzr/vim-json'
     Plugin 'octol/vim-cpp-enhanced-highlight'
     Plugin 'pangloss/vim-javascript'
