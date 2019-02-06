@@ -71,9 +71,12 @@ alias go='git checkout '
 alias gr='git rev-parse --show-toplevel'
 
 git() {
-  if [[ $@ == "wip" ]]; then
+  if [[ $@ == "wips" ]]; then
     command git add -u
-    command git commit -m "🌱"
+    command git commit -m "WIP: 🌱 squashme"
+  elif [[ $@ == "wipc" ]]; then
+    command git add -u 
+    command git commit -m "WIP: 🍒 pickme"
   else
     command git "$@"
   fi
