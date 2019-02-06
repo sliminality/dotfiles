@@ -314,6 +314,8 @@
              \ endif
     augroup END
 
+    command Path let @* = expand("%")
+
 " Mapping
 
     let mapleader=" "   " Leader key to space
