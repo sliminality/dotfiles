@@ -17,19 +17,22 @@ window:
   # Window dimensions in character columns and lines
   # (changes require restart)
   dimensions:
-    columns: 200
-    lines: 70
+    columns: 400
+    lines: 150
 
   # Adds this many blank pixels of padding around the window
   # Units are physical pixels; this is not DPI aware.
   # (change requires restart)
   padding:
-    x: 10
-    y: 20
+    # x: 10
+    # y: 20
+    x: 0
+    y: 0
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
-  decorations: transparent
+  decorations: true
+  # decorations: transparent
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 8
@@ -41,23 +44,18 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Operator Mono for Powerline
-    style: Book
-    # family: FuraCode Nerd Font
-    # style: Retina
+    family: FuraCode Nerd Font
+    style: Retina
 
   # The bold font face
   bold:
-    family: Operator Mono for Powerline
-    style: Medium
-    # family: FuraCode Nerd Font
-    # style: Bold
+    family: FuraCode Nerd Font
+    style: Bold
 
   # The italic font face
   italic:
-    family: Operator Mono for Powerline
-    # family: FuraCode Nerd Font
-    # style: Italic
+    family: FuraCode Nerd Font
+    style: Italic
 
   # Point size of the font
   size: 14.0
