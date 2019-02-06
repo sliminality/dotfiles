@@ -45,3 +45,9 @@ Cargo.lock
 **/*.rs.bk
 
 *.class
+
+# ripgrep ignore files
+.ignore
+
+# My own stuff
+typestest.js
