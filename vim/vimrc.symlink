@@ -485,7 +485,9 @@
     if isdirectory(expand('~/.vim/bundle/YouCompleteMe'))
         augroup YCMGoTo
             autocmd!
-            autocmd FileType rust,c,cpp,ch,sass,css,json,java,python nnoremap <Leader>] :YcmCompleter GoTo<CR>
+            " Since ALEGoToDefinition doesn't seem to work with Python, use YCM's jump-to-def, which uses Jedi.
+            " autocmd FileType rust,c,cpp,ch,sass,css,json,java,python nnoremap <Leader>] :YcmCompleter GoTo<CR>
+            autocmd FileType python nnoremap <Leader>] :YcmCompleter GoTo<CR>
         augroup END
         set completeopt-=preview
     endif
@@ -506,7 +508,8 @@
 
         augroup FlowGoTo
             autocmd!
-            autocmd FileType javascript nnoremap <Leader>] :FlowJumpToDef<CR>
+            " 7/1/19: Commenting this out in favor of ALEGoToDefinition.
+            " autocmd FileType javascript nnoremap <Leader>] :FlowJumpToDef<CR>
             autocmd FileType javascript nnoremap <Leader>[ :FlowType<CR>
         augroup END
     endif
@@ -595,10 +598,26 @@
 
     " ALE
     if isdirectory(expand('~/.vim/bundle/ale'))
-        " let g:ale_lint_on_text_changed = 'never'
-        " let g:ale_linters = {
-        " \   'javascript': ['eslint'],
-        " \}
+        augroup KhanLint
+            autocmd!
+            autocmd BufRead,BufNewFile */khan/webapp* let b:ale_javascript_eslint_executable = $HOME."/khan/devtools/khan-linter/node_modules/.bin/eslint"
+            autocmd BufRead,BufNewFile */khan/webapp* let b:ale_javascript_eslint_use_global = 1
+            " autocmd BufRead,BufNewFile */khan/webapp* let b:ale_linters = {
+            " \   'javascript': [
+            " \       'flow',
+            " \       'eslint',
+            " \       'trim_whitespace',
+            " \       'remove_trailing_lines',
+            " \   ],
+            " \}
+            autocmd BufRead,BufNewFile */khan/webapp* let b:ale_fixers = {
+                \   'javascript': ['prettier'],
+            \}
+            " autocmd BufRead,BufNewFile */khan/webapp* let b:ale_fix_on_save = 1
+            autocmd BufRead,BufNewFile */khan/webapp* let g:ale_javascript_prettier_options = '--write --tab-width=4 --no-bracket-spacing --trailing-comma=all --parser=flow'
+        augroup END
+
+        nmap <silent> <Leader>] :ALEGoToDefinition<CR>
 
         nmap <silent> [e <Plug>(ale_previous_wrap)
         nmap <silent> ]e <Plug>(ale_next_wrap)
@@ -698,7 +717,7 @@
         let g:prettier#autoformat = 0
         augroup Prettier
             autocmd!
-            autocmd BufWritePre *.js,*.css,*.scss,*.less,*.graphql PrettierAsync
+            autocmd BufWritePre *.js,*.jsx,*.css,*.scss,*.less,*.graphql PrettierAsync
         augroup END
 
         " Use Prettier (not vim-prettier) defaults, except for KA specific ones.
