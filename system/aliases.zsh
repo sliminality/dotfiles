@@ -35,9 +35,6 @@ alias k='k -h --no-vcs'
 # Visual
 ############################################
 
-# Use ccat for syntax highlighted cat
-alias cat='ccat'
-
 # Prettyprint path
 alias path='echo $PATH | tr -s ":" "\n"'
 
