@@ -13,7 +13,7 @@ alias d="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 
 # Tree listing of depth 3
-alias tr='tree -L 3'
+alias treee='tree -L 3'
 
 # List files with -F decorative endings
 alias ls='ls -F'
