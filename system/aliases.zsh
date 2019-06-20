@@ -13,7 +13,7 @@ alias d="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 
 # Tree listing of depth 3
-alias tr='tree -L 3'
+alias treee='tree -L 3'
 
 # List files with -F decorative endings
 alias ls='ls -F'
@@ -34,9 +34,6 @@ alias k='k -h --no-vcs'
 ############################################
 # Visual
 ############################################
-
-# Use ccat for syntax highlighted cat
-alias cat='ccat'
 
 # Prettyprint path
 alias path='echo $PATH | tr -s ":" "\n"'
@@ -74,9 +71,12 @@ alias go='git checkout '
 alias gr='git rev-parse --show-toplevel'
 
 git() {
-  if [[ $@ == "wip" ]]; then
+  if [[ $@ == "wips" ]]; then
     command git add -u
-    command git commit -m "🌱"
+    command git commit -m "WIP: 🌱 squashme"
+  elif [[ $@ == "wipc" ]]; then
+    command git add -u 
+    command git commit -m "WIP: 🍒 pickme"
   else
     command git "$@"
   fi

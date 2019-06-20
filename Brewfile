@@ -4,7 +4,6 @@ tap 'homebrew/bundle'
 tap 'caskroom/versions'
 
 brew 'bear'
-brew 'ccat'
 brew 'clang-format'
 brew 'cmake'
 brew 'coreutils'

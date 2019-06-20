@@ -11,7 +11,7 @@
         count   = !git shortlog -sn
         last    = log -1 HEAD
 [color]
-        ui = always
+        ui = auto
 [color "diff"]
         meta = yellow bold
         commit = green bold
