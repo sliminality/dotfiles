@@ -197,10 +197,10 @@
     " Color schemes
     augroup RainbowColors
         autocmd!
-        autocmd ColorScheme * highlight SignColumn guibg=#0a0b0c
         autocmd ColorScheme * highlight GitGutterAddDefault    guifg=#a7da1e guibg=#0a0b0c
         autocmd ColorScheme * highlight GitGutterChangeDefault guifg=#f7b83d guibg=#0a0b0c
         autocmd ColorScheme * highlight GitGutterDeleteDefault guifg=#e61f44 guibg=#0a0b0c
+        autocmd ColorScheme * highlight SignColumn             guibg=#0a0b0c
     augroup END
     colorscheme rainbow-contrast
 
@@ -334,6 +334,9 @@
 
     if isdirectory(expand('~/.vim/bundle/ale'))
         let g:ale_fix_on_save = 1
+        let g:ale_fixers = {
+            \ 'javascript': ['prettier']
+            \ }
         let g:ale_completion_enabled = 1
         set completeopt-=noinsert
         nmap <silent> [e   <Plug>(ale_previous_wrap)
@@ -446,7 +449,7 @@
     endif
 
     if isdirectory(expand("~/.vim/bundle/nerdtree"))
-        let NERDTreeIgnore=[
+        let g:NERDTreeIgnore=[
             \ '\.DS_Store',
             \ '\.py[cd]$',
             \ '\~$', '\.swo$',
@@ -458,9 +461,9 @@
             \ 'node_modules',
             \ 'perseus\/\.\+\.css$'
             \ ]
-        let NERDTreeShowHidden=1
-        let NERDTreeMouseMode=2  " Single click to open directories
-        let NERDTreeChDirMode=2  " cwd when NERDTree root changes
+        let g:NERDTreeShowHidden=1
+        let g:NERDTreeMouseMode=2  " Single click to open directories
+        let g:NERDTreeChDirMode=2  " cwd when NERDTree root changes
         nnoremap <leader>e :NERDTreeToggle<CR>
     endif
 
