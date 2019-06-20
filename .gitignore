@@ -1,4 +1,5 @@
 git/gitconfig.local.symlink
-config.symlink/yarn
-config.symlink/configstore
-config.symlink/hub
+config.symlink/*
+!config.symlink/nvim
+!config.symlink/karabiner
+!config.symlink/alacritty
