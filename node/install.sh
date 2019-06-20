@@ -1,10 +1,2 @@
 # Install nvm
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
-
-npm install -g \
-	markmon \
-	harp \
-	http-server \
-	babel-cli \
-	eslint \
-	tern \
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
