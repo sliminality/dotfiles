@@ -47,6 +47,7 @@
     Plugin 'pangloss/vim-javascript'
     Plugin 'elzr/vim-json'
     Plugin 'neoclide/vim-jsx-improve'
+    Plugin 'Chandlercjy/vim-markdown-edit-code-block', {'for':'markdown'}
     Plugin 'vim-pandoc/vim-pandoc'
     Plugin 'vim-pandoc/vim-pandoc-syntax'
     Plugin 'digitaltoad/vim-pug'
@@ -313,7 +314,7 @@
     " Show all open buffers and their status
     nmap <leader>bl :Buffers<CR>
 
-    " Copy to system keyboard
+    " Copy to system clipboard
     vnoremap <C-c> "*y
 
     " Very magic regexes
@@ -329,6 +330,9 @@
     nnoremap <c-k> :TmuxNavigateUp<cr>
     nnoremap <c-h> :TmuxNavigateLeft<cr>
     nnoremap <c-l> :TmuxNavigateRight<cr>
+
+    " Pull path into system clipboard
+    command! Path let @* = expand("%")
 
 " Plugins
 
