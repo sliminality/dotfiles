@@ -87,14 +87,11 @@ unset config_files
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-source "${HOME}/.zsh-nvm/zsh-nvm.plugin.zsh"
-export NVM_DIR="${HOME}/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-export NVM_LAZY_LOAD=true
-source ~/.zsh-nvm/zsh-nvm.plugin.zsh
-
+# nvm
 export NVM_DIR="$HOME/.nvm"
+export NVM_LAZY_LOAD=true
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# source "${HOME}/.zsh-nvm/zsh-nvm.plugin.zsh"
 
 # Rust src for racer
 export RUST_SRC_PATH=~/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src

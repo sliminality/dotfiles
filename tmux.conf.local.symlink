@@ -103,6 +103,11 @@ tmux_conf_theme_window_status_format='#I #W'
 # window current status style
 #   - built-in variables are:
 #     - #{circled_window_index}
+#     - #{circled_session_name}
+#     - #{hostname}
+#     - #{hostname_ssh}
+#     - #{username}
+#     - #{username_ssh}
 tmux_conf_theme_window_status_current_fg='#000000'      # black
 tmux_conf_theme_window_status_current_bg='#00afff'      # light blue
 tmux_conf_theme_window_status_current_attr='bold'
@@ -113,12 +118,14 @@ tmux_conf_theme_window_status_current_format='#I #W'
 # window activity status style
 tmux_conf_theme_window_status_activity_fg='default'
 tmux_conf_theme_window_status_activity_bg='default'
-tmux_conf_theme_window_status_activity_attr='underscore'
+# tmux_conf_theme_window_status_activity_attr='underscore'
+tmux_conf_theme_window_status_activity_attr='none'
 
 # window bell status style
 tmux_conf_theme_window_status_bell_fg='#ffff00'         # yellow
 tmux_conf_theme_window_status_bell_bg='default'
-tmux_conf_theme_window_status_bell_attr='blink,bold'
+# tmux_conf_theme_window_status_bell_attr='blink,bold'
+tmux_conf_theme_window_status_bell_attr='none'
 
 # window last status style
 tmux_conf_theme_window_status_last_fg='#00afff'         # light blue
@@ -163,7 +170,7 @@ tmux_conf_theme_status_right='#{prefix}#{pairing} #{?battery_status, #{battery_s
 # status left style
 tmux_conf_theme_status_left_fg='#000000,#e4e4e4,#e4e4e4'  # black, white , white
 tmux_conf_theme_status_left_bg='#ffff00,#ff00af,#00afff'  # yellow, pink, white blue
-tmux_conf_theme_status_left_attr='bold,none,none'
+tmux_conf_theme_status_left_attr='none,none,none'
 
 # status right style
 tmux_conf_theme_status_right_fg='#8a8a8a,#e4e4e4,#000000' # light gray, white, black
@@ -245,6 +252,9 @@ tmux_conf_copy_to_os_clipboard=true
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
 
+# Use zsh as default shell.
+# set-option -g default-shell $(which zsh)
+
 # increase history size
 #set -g history-limit 10000
 
@@ -258,6 +268,11 @@ set -sg escape-time 0
 # See: https://github.com/christoomey/vim-tmux-navigator
 is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
     | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+# bind-key -n C-h if-shell "$is_vim" "send-keys C-h"  "select-pane -L; resize-pane -Z"
+# bind-key -n C-j if-shell "$is_vim" "send-keys C-j"  "select-pane -D; resize-pane -Z"
+# bind-key -n C-k if-shell "$is_vim" "send-keys C-k"  "select-pane -U; resize-pane -Z"
+# bind-key -n C-l if-shell "$is_vim" "send-keys C-l"  "select-pane -R; resize-pane -Z"
+# bind-key -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l; resize-pane -Z"
 bind-key -n C-h if-shell "$is_vim" "send-keys C-h"  "select-pane -L"
 bind-key -n C-j if-shell "$is_vim" "send-keys C-j"  "select-pane -D"
 bind-key -n C-k if-shell "$is_vim" "send-keys C-k"  "select-pane -U"
@@ -296,5 +311,5 @@ bind -n  M-Left   split-window -h  # Create new vertical split
 # bind C-a send-prefix
 
 # move status line to top
-#set -g status-position top
+# set -g status-position top
 

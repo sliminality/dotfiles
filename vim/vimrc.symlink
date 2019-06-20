@@ -8,27 +8,27 @@
 
     Plugin 'VundleVim/Vundle.vim'  " required
 
-    " Syntax and inference tooling
-    Plugin 'flowtype/vim-flow'
+    " General syntax and inference tooling
     if !exists('g:actualvim')
-        " Plugin 'scrooloose/syntastic'
         Plugin 'w0rp/ale'
         Plugin 'prettier/vim-prettier', { 'do': 'npm install' }
-        " Plugin 'nbouscal/vim-stylish-haskell'
-        Plugin 'Valloric/YouCompleteMe'
+
+        " Deoplete requires Python 3.
+        if has('nvim') && has('python3')
+            Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+        endif
     endif
 
     " UI extensions
     if !exists('g:actualvim')
         " Plugin 'sarahlim/wild-cherry-vim'
-        Plugin 'sarahlim/vim'
         " Plugin 'ayu-theme/ayu-vim'
+        Plugin 'sarahlim/vim'
         Plugin 'scrooloose/nerdtree'
         Plugin 'itchyny/lightline.vim'
         Plugin 'mgee/lightline-bufferline'
         Plugin 'tpope/vim-fugitive'
         Plugin 'airblade/vim-gitgutter'
-        " Plugin 'christoomey/vim-tmux-runner'
         Plugin 'christoomey/vim-tmux-navigator'
     endif
 
@@ -40,10 +40,7 @@
     Plugin 'tpope/vim-repeat'
     Plugin 'junegunn/fzf'
     Plugin 'junegunn/fzf.vim'
-    Plugin 'mattn/emmet-vim'
-    Plugin 'HTML-AutoCloseTag'
     Plugin 'tpope/vim-dispatch'
-    Plugin 'terryma/vim-multiple-cursors'
 
     " Language specific support
     " Plugin 'autozimu/LanguageClient-neovim', {
@@ -63,14 +60,16 @@
     Plugin 'neovimhaskell/haskell-vim'
     Plugin 'itchyny/vim-haskell-indent'
     Plugin 'reasonml-editor/vim-reason-plus'
+    Plugin 'leafgarland/typescript-vim'
 
     " Markdown and writing
     Plugin 'godlygeek/tabular'
-    Plugin 'JamshedVesuna/vim-markdown-preview'
+    " Plugin 'JamshedVesuna/vim-markdown-preview'
     " Plugin 'plasticboy/vim-markdown'
     Plugin 'vim-pandoc/vim-pandoc'
     Plugin 'vim-pandoc/vim-pandoc-syntax'
     Plugin 'lervag/vimtex'
+    Plugin 'Chandlercjy/vim-markdown-edit-code-block'
 
     " plugin from http://vim-scripts.org/vim/scripts.html
     " Plugin 'L9'
@@ -105,18 +104,18 @@
     set shiftwidth=4    " 1 tab == 4 spaces
     set tabstop=4
 
-    augroup SyntaxSettings
-        autocmd!
-        autocmd FileType html,javascript,haskell,yaml,json,css,scss,pug setlocal shiftwidth=4 softtabstop=4 tabstop=4
-        autocmd BufNewFile,BufRead *.coffee set filetype=coffee
-        autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=yaml
-        autocmd BufNewFile,BufRead *.eslintrc,*.babelrc set filetype=json
+augroup SyntaxSettings
+    autocmd!
+    autocmd FileType html,javascript,haskell,yaml,json,css,scss,pug setlocal shiftwidth=4 softtabstop=4 tabstop=4
 
-        " au BufNewFile,BufRead *.mdown,*.mkd,*.md set filetype=tex
-        " au BufNewFile,BufRead *.mdown,*.md set syntax=pandoc
-    augroup END
+    autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+    autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=yaml
+    autocmd BufNewFile,BufRead *.eslintrc,*.babelrc set filetype=json
+    autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 
-    let g:tex_flavor = 'latex'
+    " au BufNewFile,BufRead *.mdown,*.mkd,*.md set filetype=tex
+    " au BufNewFile,BufRead *.mdown,*.md set syntax=pandoc
+augroup END
 
     set lbr             " Linebreak on 500 chars
     set tw=500
@@ -399,10 +398,6 @@
     nnoremap :g/ :g/\v
     nnoremap :g// :g//
 
-    " Pad new lines without entering insert mode
-    nnoremap <leader>O O<Esc>j
-    " nnoremap <leader>o o<Esc>k
-
     " Treat $ as text objects
     " onoremap <silent> i$ :<c-u>normal! T$vt$<cr>
     " vnoremap i$ T$ot$
@@ -421,12 +416,22 @@
         let g:pandoc#syntax#conceal#use = 0
         let g:pandoc#syntax#codeblocks#embeds#langs = [
             \ 'python',
+            \ 'py=python',
             \ 'javascript',
+            \ 'js=javascript',
             \ 'html',
             \ 'css',
             \ 'rkt=scheme',
             \ 'bash=sh'
             \ ]
+    endif
+
+    " MarkdownEditBlock
+    if isdirectory(expand('~/.vim/bundle/vim-markdown-edit-code-block'))
+        augroup MarkdownEditBlock
+            autocmd!
+            autocmd FileType markdown,pandoc nmap <buffer> <silent> <leader>i :MarkdownEditBlock<CR>
+        augroup END
     endif
 
     " GitGutter
@@ -436,6 +441,7 @@
 
     " vimtex
     if isdirectory(expand('~/.vim/bundle/vimtex'))
+        let g:tex_flavor = 'latex'
         let g:vimtex_complete_close_braces = 1
     endif
 
@@ -478,47 +484,32 @@
         let g:indentLine_conceallevel = 0
     endif
 
-    " YouCompleteMe
-    " let g:python_host_prog = '~/.virtualenv/neovim2/bin/python'
-    let g:python3_host_prog = '/Users/sarahlim/.virtualenv/neovim3/bin/python'
+    let g:python3_host_prog = '/usr/local/bin/python3'
 
     if isdirectory(expand('~/.vim/bundle/YouCompleteMe'))
         augroup YCMGoTo
             autocmd!
             " Since ALEGoToDefinition doesn't seem to work with Python, use YCM's jump-to-def, which uses Jedi.
-            " autocmd FileType rust,c,cpp,ch,sass,css,json,java,python nnoremap <Leader>] :YcmCompleter GoTo<CR>
             autocmd FileType python nnoremap <Leader>] :YcmCompleter GoTo<CR>
         augroup END
         set completeopt-=preview
     endif
 
-    " vim-flow
-    if isdirectory(expand('~/.vim/bundle/vim-flow'))
-        let g:flow#enable = 0
+    " Deoplete
+    if isdirectory(expand('~/.vim/bundle/deoplete.nvim'))
+        let g:deoplete#enable_at_startup = 1
+        set completeopt+=noinsert
 
-        " Use local flow binary
-        let local_flow = finddir('node_modules', ';') . '/.bin/flow'
-
-        if matchstr(local_flow, "^\/\\w") == ''
-            let local_flow = getcwd() . "/" . local_flow
-        endif
-        if executable(local_flow)
-            let g:flow#flowpath = local_flow
-        endif
-
-        augroup FlowGoTo
-            autocmd!
-            " 7/1/19: Commenting this out in favor of ALEGoToDefinition.
-            " autocmd FileType javascript nnoremap <Leader>] :FlowJumpToDef<CR>
-            autocmd FileType javascript nnoremap <Leader>[ :FlowType<CR>
-        augroup END
+        " Navigate suggestion list with Tab and Shift-Tab.
+        inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+        inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
     endif
 
     " Flow syntax highlighting
     let g:javascript_plugin_flow = 1
 
     " Add JSX syntax highlighting to .js files
-    let g:jx_ext_required = 0
+    let g:jsx_ext_required = 0
 
     " Rust language
     let g:rustfmt_autosave = 1
@@ -621,6 +612,17 @@
 
         nmap <silent> [e <Plug>(ale_previous_wrap)
         nmap <silent> ]e <Plug>(ale_next_wrap)
+        nnoremap <Leader>] :ALEGoToDefinition<CR>
+        nnoremap <Leader>[ :ALEHover<CR>
+
+        let g:ale_completion_enabled = 1
+        set completeopt-=noinsert
+
+        let g:ale_fix_on_save = 1
+        let g:ale_fixers = {
+            \ 'javascript': ['prettier', 'eslint', 'tslint'],
+            \ 'typescript': ['prettier', 'eslint', 'tslint']
+            \ }
     endif
 
 "     " Syntastic

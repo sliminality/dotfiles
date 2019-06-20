@@ -24,15 +24,19 @@ window:
   # Units are physical pixels; this is not DPI aware.
   # (change requires restart)
   padding:
-    # x: 10
-    # y: 20
     x: 0
     y: 0
 
   # Window decorations
-  # Setting this to false will result in window without borders and title bar.
-  decorations: true
-  # decorations: transparent
+  #
+  # Values for `decorations`:
+  #     - full: Borders and title bar
+  #     - none: Neither borders nor title bar
+  #
+  # Values for `decorations` (macOS only):
+  #     - transparent: Title bar, transparent background and title bar buttons
+  #     - buttonless: Title bar, transparent background, but no title bar buttons
+  decorations: full
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 8
@@ -44,22 +48,26 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
+    # family: Operator Mono for Powerline
+    # style: Book
     family: FuraCode Nerd Font
     style: Retina
 
   # The bold font face
   bold:
+    # family: Operator Mono for Powerline
+    # style: Medium
     family: FuraCode Nerd Font
     style: Bold
 
   # The italic font face
   italic:
+    # family: Operator Mono for Powerline
     family: FuraCode Nerd Font
     style: Italic
 
   # Point size of the font
   size: 14.0
-  # size: 13.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -72,19 +80,16 @@ font:
   # the right, increase the y offset to move the glyph upward.
   glyph_offset:
     x: 0
-    y: 3
+    y: 0
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
   # false.
-  use_thin_strokes: false
+  use_thin_strokes: true
 
 # Should display the render timer
-render_timer: false
-
-# Use custom cursor colors. If true, display the cursor in the cursor.foreground
-# and cursor.background colors, otherwise invert the colors of the cursor.
-custom_cursor_colors: false
+debug:
+  render_timer: false
 
 # Colors (Tomorrow Night Bright)
 colors:
@@ -97,6 +102,7 @@ colors:
   cursor:
     text: '0xd1d8e0'
     cursor: '0xf9f9f3'
+    style: Block
 
   # Normal colors
   normal:
@@ -195,23 +201,15 @@ mouse:
   # screen buffer is active. This is used to allow mouse
   # scrolling for applications like `man`.
   #
-  # To disable this completely, set `faux_scrollback_lines` to 0.
-  faux_scrollback_lines: 1
+  # To disabling_lines: completely, set `faux_scrollback_lines` to 0.
+  faux_scrolling_lines: 1
+
+  hide_when_typing: false
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
 
 dynamic_title: true
-
-hide_cursor_when_typing: false
-
-# Style of the cursor
-#
-# Values for 'cursor_style':
-# - Block
-# - Underline
-# - Beam
-cursor_style: Block
 
 # Live config reload (changes require restart)
 live_config_reload: true

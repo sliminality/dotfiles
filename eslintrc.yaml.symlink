@@ -10,10 +10,13 @@ parserOptions:
 extends:
   - eslint:recommended
   - plugin:import/errors
+  - plugin:react/recommended
+  - plugin:flowtype/recommended
 
 plugins:
   - import
   - flowtype
+  - react
 
 env:
   browser: true
@@ -21,9 +24,14 @@ env:
   node: true
 
 rules:
+  react/prop-types: 0
+  react/jsx-uses-vars: 2
+
   no-unused-vars:
     - error
     - argsIgnorePattern: "^_"
+      varsIgnorePattern: "^_"
 
   no-console:
     - off
+
