@@ -1,6 +1,0 @@
-#!/bin/sh
-
-# Usage: replace old-pattern new-pattern
-# Recursively replaces patterns within files.
-
-sed -e "s/$1/$2" `rg -l "$1"`
