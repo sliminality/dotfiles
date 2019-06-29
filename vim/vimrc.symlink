@@ -343,8 +343,8 @@
 
         let g:ale_completion_enabled = 1
 
-        nnoremap <silent> [e   <Plug>(ale_previous_wrap)
-        nnoremap <silent> ]e   <Plug>(ale_next_wrap)
+        nmap <silent> [e   <Plug>(ale_previous_wrap)
+        nmap <silent> ]e   <Plug>(ale_next_wrap)
 
         " These get remapped for FileTypes that don't have good ALE support.
         nmap <buffer> <Leader>] <Plug>(ale_go_to_definition)
@@ -391,7 +391,7 @@
 
     if isdirectory(expand('~/.vim/bundle/deoplete.nvim'))
         let g:deoplete#enable_at_startup = 1
-        set completeopt+=noinsert
+        set completeopt-=noinsert
 
         " Navigate suggestion list with Tab and Shift-Tab.
         inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
