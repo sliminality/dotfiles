@@ -337,7 +337,8 @@
     if isdirectory(expand('~/.vim/bundle/ale'))
         let g:ale_fix_on_save = 1
         let g:ale_fixers = {
-            \ 'javascript': ['prettier']
+            \ 'javascript': ['prettier'],
+            \ 'haskell': ['brittany'],
             \ }
 
         let g:ale_completion_enabled = 1
@@ -348,6 +349,13 @@
         " These get remapped for FileTypes that don't have good ALE support.
         nmap <buffer> <Leader>] <Plug>(ale_go_to_definition)
         nmap <buffer> <Leader>[ <Plug>(ale_hover)
+
+        augroup ALEHaskell
+            autocmd!
+            " Include src directory to avoid ghc "Ambiguous module" error.
+            autocmd FileType haskell let b:ale_haskell_stack_ghc_options = ' -fno-code -v0'
+                \ . '-i' . getcwd() . '/src'
+        augroup END
     endif
 
     if isdirectory(expand('~/.vim/bundle/auto-pairs'))
@@ -423,7 +431,7 @@
     endif
 
     if isdirectory(expand('~/.vim/bundle/haskell-vim'))
-      let g:haskell_indent_where = 4
+      let g:haskell_indent_where = 2
       let g:haskell_indent_guard = 2
     endif
 
@@ -438,9 +446,33 @@
 
     if isdirectory(expand('~/.vim/bundle/intero-neovim'))
         let g:intero_window_size = 2  " Open a very small window
-        augroup HaskellConfig
+
+        " Toggle the Intero window open or closed, depending on whether it is
+        " currently visible.
+        " If the window needs to be opened, set its buffer to unlisted.
+        function! <SID>InteroToggle()
+            if intero#util#get_intero_window() == -1
+                InteroOpen
+                " Navigate to the new window.
+                let l:window_id = intero#util#get_intero_window()
+                execute l:window_id . "winc w"
+                " Set the buffer to unlisted so it doesn't show up in the buflist.
+                setlocal nobuflisted
+                " Go back to split above.
+                " NOTE: This is pretty brittle and specific to my configuration.
+                " It depends on setting the Intero window to open vertically.
+                execute "normal \<C-w>k"
+                return
+            else
+                InteroHide
+                return
+            endif
+        endfunc
+
+        augroup InteroConfig
             autocmd!
-            autocmd FileType haskell map <buffer> <Leader>\ :InteroOpen<CR>
+            autocmd BufWritePost *.hs InteroReload
+            autocmd FileType haskell map <buffer> <Leader>\ :call <SID>InteroToggle()<CR>
             autocmd FileType haskell map <buffer> <Leader>[ <Plug>InteroGenericType
             autocmd FileType haskell map <buffer> <Leader>] :InteroGoToDef<CR>
         augroup END

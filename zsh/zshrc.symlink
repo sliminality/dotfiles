@@ -48,6 +48,7 @@ path=(
   $HOME/emsdk-portable/emscripten/incoming
   $HOME/binaryen/bin
   $HOME/wabt/out
+  $HOME/.local/bin # Stack
 )
 
 # load everything but the path and completion files
