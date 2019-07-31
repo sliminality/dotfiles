@@ -1,0 +1,12 @@
+-- Lambda prompt
+-- :set prompt "\ESC[1;35m\x03BB> \ESC[m"
+
+-- Better prompt
+:set prompt "\ESC[1;35mVandelay Industries> \ESC[m"
+:set prompt-cont "\ESC[1;35m > \ESC[m"
+
+-- Packages
+:set -package containers
+
+-- Reasonable extensions
+:set -XOverloadedStrings
