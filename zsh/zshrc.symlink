@@ -49,6 +49,8 @@ path=(
   $HOME/binaryen/bin
   $HOME/wabt/out
   $HOME/.local/bin # Stack
+  /usr/local/opt/terraform@0.11/bin
+  $HOME/Library/Python/3.7/bin
 )
 
 # load everything but the path and completion files
@@ -74,6 +76,9 @@ function chpwd () {
 
 # Use regular emacs line bindings
 bindkey -e
+# 07/31/2019 These don't seem to do anything in Alacritty
+# bindkey '\e\e[C' forward-word
+# bindkey '\e\e[D' backward-word
 
 # Source z
 
