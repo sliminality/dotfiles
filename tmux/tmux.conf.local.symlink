@@ -294,10 +294,6 @@ bind -n  S-Right  next-window
 bind -n  M-Up     new-window
 bind -n  M-Down   confirm kill-pane
 
-# These bindings are inconvenient, but designed to be remapped in BTT.
-bind -n  M-Right  split-window -v  # Create new horizontal split
-bind -n  M-Left   split-window -h  # Create new vertical split
-
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
 #set -g status-keys vi
