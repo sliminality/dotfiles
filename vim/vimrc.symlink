@@ -187,9 +187,6 @@
     " Neovim: use straight cursor for insert mode
     set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
 
-    " Make matched parens visually distinct from cursor
-    hi MatchParen gui=underline guifg=NONE guibg=NONE
-
     " Remove | char from vertical splits
     set fillchars+=vert:\ 
 
@@ -218,6 +215,9 @@
     " endif
     " colorscheme ayu
 
+    " Make matched parens visually distinct from cursor
+    highlight MatchParen gui=underline guifg=NONE guibg=NONE
+
 " Editing
 
     set pastetoggle=<F12>            " Toggle auto-indentation
@@ -228,8 +228,6 @@
     set iskeyword-=.                 " '.' delimits words
     set iskeyword-=#                 " '#' delimits words
     set iskeyword-=-                 " '-' delimits words
-
-    set foldmethod=syntax
 
     " Command <Tab> completion, list matches, then longest common part, then all.
     set wildmode=list:longest,full
