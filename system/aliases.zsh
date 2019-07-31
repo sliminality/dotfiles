@@ -70,17 +70,17 @@ alias gd='git diff'
 alias go='git checkout '
 alias gr='git rev-parse --show-toplevel'
 
-git() {
-  if [[ $@ == "wips" ]]; then
-    command git add -u
-    command git commit -m "WIP: 🌱 squashme"
-  elif [[ $@ == "wipc" ]]; then
-    command git add -u 
-    command git commit -m "WIP: 🍒 pickme"
-  else
-    command git "$@"
-  fi
-}
+# git() {
+#   if [[ $@ == "wips" ]]; then
+#     command git add -u
+#     command git commit -m "WIP: 🌱 squashme"
+#   elif [[ $@ == "wipc" ]]; then
+#     command git add -u 
+#     command git commit -m "WIP: 🍒 pickme"
+#   else
+#     command git "$@"
+#   fi
+# }
 
 ############################################
 # Chrome
