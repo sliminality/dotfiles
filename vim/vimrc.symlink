@@ -193,10 +193,12 @@
     " Color schemes
     augroup RainbowColors
         autocmd!
-        autocmd ColorScheme * highlight GitGutterAddDefault    guifg=#a7da1e guibg=#0a0b0c
-        autocmd ColorScheme * highlight GitGutterChangeDefault guifg=#f7b83d guibg=#0a0b0c
-        autocmd ColorScheme * highlight GitGutterDeleteDefault guifg=#e61f44 guibg=#0a0b0c
-        autocmd ColorScheme * highlight SignColumn             guibg=#0a0b0c
+        " NOTE: These should be applied in ~/.vimrc, but issue 542. https://github.com/vim/vim/issues/542
+        " So we apply these in the color scheme file instead.
+        " autocmd ColorScheme * highlight GitGutterAddDefault    guifg=#a7da1e guibg=#0a0b0c
+        " autocmd ColorScheme * highlight GitGutterChangeDefault guifg=#f7b83d guibg=#0a0b0c
+        " autocmd ColorScheme * highlight GitGutterDeleteDefault guifg=#e61f44 guibg=#0a0b0c
+        " autocmd ColorScheme * highlight SignColumn             guibg=#0a0b0c
     augroup END
     colorscheme rainbow-contrast
 
