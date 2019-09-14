@@ -46,8 +46,8 @@ path=(
   $HOME/emsdk-portable/clang/fastcomp/build_incoming_64/bin
   $HOME/emsdk-portable/node/8.9.1_64bit/bin
   $HOME/emsdk-portable/emscripten/incoming
-  $HOME/binaryen/bin
-  $HOME/wabt/out
+  $HOME/git/binaryen/bin
+  $HOME/git/wabt/build
   $HOME/.local/bin # Stack
   /usr/local/opt/terraform@0.11/bin
   $HOME/Library/Python/3.7/bin
