@@ -51,3 +51,5 @@
         default = current
 [pager]
         branch = false
+        # Our Notion precommit hook has `git grep` which causes a pager to appear.
+        grep = false
