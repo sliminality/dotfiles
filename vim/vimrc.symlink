@@ -416,14 +416,23 @@
         " Apply defaults to fzf#vim#grep. 
         command! -bang -nargs=* Rg
           \ call fzf#vim#grep(
-          \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-          \   <bang>0 ? fzf#vim#with_preview('up:60%')
-          \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+          \   'rg --column --vimgrep --color=always '.shellescape(<q-args>), 1,
+          \   fzf#vim#with_preview('right:40%'),
           \   <bang>0)
-        " Open files in current git repo
+        " command! -bang -nargs=* Rg
+        "   \ call fzf#vim#grep(
+        "   \   'rg --column --vimgrep --color=always '.shellescape(<q-args>), 1,
+        "   \   <bang>0 ? fzf#vim#with_preview('up:60%')
+        "   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+        "   \   <bang>0)
+        " Search files in current git repo
         nnoremap <leader>p :GFiles<cr>
-        " Open files in cwd
+        " Search files in cwd
         nnoremap <leader>o :Files<cr>
+        " Search within files
+        nnoremap <leader>f :Rg<cr>
+        " Search commands
+        nnoremap <leader>c :Commands<cr>
     endif
 
     if isdirectory(expand('~/.vim/bundle/vim-gitgutter'))
@@ -512,6 +521,8 @@
         let g:NERDTreeShowHidden=1
         let g:NERDTreeMouseMode=2  " Single click to open directories
         let g:NERDTreeChDirMode=2  " cwd when NERDTree root changes
+        let g:NERDTreeQuitOnOpen=1
+        let g:NERDTreeWinSize=30
         nnoremap <leader>e :NERDTreeToggle<CR>
     endif
 
