@@ -338,6 +338,7 @@
             \ 'javascript': ['prettier'],
             \ 'typescript': ['prettier'],
             \ 'haskell': ['brittany'],
+            \ 'rust': ['rls', 'rustfmt'],
             \ }
 
         let g:ale_completion_enabled = 1
