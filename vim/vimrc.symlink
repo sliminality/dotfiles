@@ -533,6 +533,14 @@
         "     autocmd!
         "     autocmd BufWritePre *.js,*.jsx,*.css,*.scss,*.less,*.graphql PrettierAsync
         " augroup END
+
+        let g:prettier#config#print_width = 100
+        let g:prettier#config#tab_width = 4
+        let g:prettier#config#semi = 'false'
+        let g:prettier#config#single_quote = 'false'
+        let g:prettier#config#bracket_spacing = 'true'
+        let g:prettier#config#arrow_parens = 'avoid'
+        let g:prettier#config#trailing_comma = 'all'
     endif
 
     if isdirectory(expand('~/.vim/bundle/vim-pandoc'))
