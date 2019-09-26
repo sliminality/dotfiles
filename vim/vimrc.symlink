@@ -336,11 +336,14 @@
 
     if isdirectory(expand('~/.vim/bundle/ale'))
         let g:ale_fix_on_save = 1
+        let g:ale_linters = {
+            \ 'rust': ['rls'],
+            \ }
         let g:ale_fixers = {
             \ 'javascript': ['prettier'],
             \ 'typescript': ['prettier'],
             \ 'haskell': ['brittany'],
-            \ 'rust': ['rls', 'rustfmt'],
+            \ 'rust': ['rustfmt'],
             \ }
 
         let g:ale_completion_enabled = 1
