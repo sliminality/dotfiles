@@ -69,6 +69,8 @@ alias gca='git commit -am '
 alias gd='git diff'
 alias go='git checkout '
 alias gr='git rev-parse --show-toplevel'
+alias grc='git rebase --continue'
+alias gra='git rebase --abort'
 
 # git() {
 #   if [[ $@ == "wips" ]]; then
