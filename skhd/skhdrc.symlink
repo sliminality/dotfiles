@@ -1,17 +1,19 @@
 # move focused window
 cmd + ctrl - h : yabai -m window --warp west
+cmd + ctrl - j : yabai -m window --warp south
+cmd + ctrl - k : yabai -m window --warp north
 cmd + ctrl - l : yabai -m window --warp east
 
 # toggle window properties
-cmd + ctrl - k : yabai -m window --toggle zoom-fullscreen
+cmd + ctrl - o : yabai -m window --toggle zoom-fullscreen
 cmd + ctrl - f : yabai -m window --toggle float
 
 # rotate tree
 cmd + ctrl - r : yabai -m space --rotate 270
 
-# flip
-cmd + ctrl - j : yabai -m space --mirror y-axis
-cmd + ctrl - i : yabai -m space --mirror x-axis
+# flip axes
+cmd + ctrl - x : yabai -m space --mirror y-axis
+cmd + ctrl - y : yabai -m space --mirror x-axis
 
 # resize
 cmd + ctrl + shift - space : yabai -m space --balance
