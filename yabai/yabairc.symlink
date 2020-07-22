@@ -40,4 +40,12 @@ yabai -m config left_padding                 5
 yabai -m config right_padding                5
 yabai -m config window_gap                   5
 
+# rules and automation
+# yabai -m rule --remove "licecap"
+
+# licecap
+yabai -m rule --add label="licecap" app="^licecap$" manage=off sticky=on
+yabai -m signal --add event=application_activated app="^licecap$" action="yabai -m config focus_follows_mouse off"
+yabai -m signal --add event=application_deactivated app="^licecap$" action="yabai -m config focus_follows_mouse autofocus"
+
 echo "yabai configuration loaded.."
