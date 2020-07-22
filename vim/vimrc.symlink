@@ -276,6 +276,10 @@
     xnoremap <leader>k :m-2<cr>gv=gv
     xnoremap <leader>j :m'>+<cr>gv=gv
 
+    " Re-select and re-yank any text pasted in visual mode.
+    " https://stackoverflow.com/a/5093286
+    xnoremap p "_dP
+
     " Toggle search highlighting on/off quickly
     noremap <silent> <leader>/ :set invhlsearch<CR>
 
