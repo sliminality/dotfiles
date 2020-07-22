@@ -52,6 +52,7 @@
     Plugin 'wlangstroth/vim-racket'
     Plugin 'reasonml-editor/vim-reason-plus'
     Plugin 'rust-lang/rust.vim'
+    Plugin 'hashivim/vim-terraform'
     Plugin 'leafgarland/typescript-vim'
     Plugin 'lervag/vimtex'
     Plugin 'rhysd/vim-wasm'
