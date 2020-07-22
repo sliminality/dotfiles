@@ -51,6 +51,7 @@ path=(
   $HOME/.local/bin # Stack
   /usr/local/opt/terraform@0.11/bin
   $HOME/Library/Python/3.7/bin
+  $HOME/Library/Android/sdk/platform-tools
 )
 
 # load everything but the path and completion files
