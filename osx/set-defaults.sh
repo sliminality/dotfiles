@@ -88,7 +88,9 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Set a really fast key repeat.
-defaults write NSGlobalDomain KeyRepeat -int 0
+# defaults write -g NSGlobalDomain KeyRepeat -int 0
+defaults write -g InitialKeyRepeat -int 15 # normal minimum is 15 (225 ms)
+defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
 
 ###################################################################
 # Google Chrome                                                   #
@@ -158,18 +160,18 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 # Kill apps                                                       #
 ###################################################################
 
-# for app in \
-#   "Activity Monitor" \
-#   "Address Book" \
-#   "Calendar" \
-#   "Contacts" \
-#   "cfprefsd" \
-#   "Dock" \
-#   "Finder" \
-#   "Google Chrome" \
-#   "Messages" \
-#   "Photos" \
-#   "SystemUIServer" \
-#   "Terminal"; do
-#   killall "${app}" &> /dev/null
-# done
+for app in \
+  "Activity Monitor" \
+  "Address Book" \
+  "Calendar" \
+  "Contacts" \
+  "cfprefsd" \
+  "Dock" \
+  "Finder" \
+  "Google Chrome" \
+  "Messages" \
+  "Photos" \
+  "SystemUIServer" \
+  "Terminal"; do
+  killall "${app}" &> /dev/null
+done
