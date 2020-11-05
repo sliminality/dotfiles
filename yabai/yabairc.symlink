@@ -1,16 +1,5 @@
 #!/usr/bin/env sh
 
-# bar settings
-yabai -m config status_bar                   off
-yabai -m config status_bar_text_font         "Helvetica Neue:Bold:12.0"
-yabai -m config status_bar_icon_font         "FontAwesome:Regular:12.0"
-yabai -m config status_bar_background_color  0xff202020
-yabai -m config status_bar_foreground_color  0xffa8a8a8
-yabai -m config status_bar_space_icon_strip  I II III IV V VI VII VIII IX X
-yabai -m config status_bar_power_icon_strip   
-yabai -m config status_bar_space_icon        
-yabai -m config status_bar_clock_icon        
-
 # global settings
 yabai -m config mouse_follows_focus          off
 yabai -m config focus_follows_mouse          autofocus
@@ -41,11 +30,17 @@ yabai -m config right_padding                5
 yabai -m config window_gap                   5
 
 # rules and automation
-# yabai -m rule --remove "licecap"
 
-# licecap
+# LICEcap
 yabai -m rule --add label="licecap" app="^licecap$" manage=off sticky=on
 yabai -m signal --add event=application_activated app="^licecap$" action="yabai -m config focus_follows_mouse off"
 yabai -m signal --add event=application_deactivated app="^licecap$" action="yabai -m config focus_follows_mouse autofocus"
+
+# System Preferences
+yabai -m rule --add label="preferences" app="^System Preferences$" manage=off sticky=on
+
+# Disable focus-follows-mouse in Zoom.
+yabai -m signal --add event=application_activated app="^zoom.us$" action="yabai -m config focus_follows_mouse off"
+yabai -m signal --add event=application_deactivated app="^zoom.us$" action="yabai -m config focus_follows_mouse autofocus"
 
 echo "yabai configuration loaded.."
