@@ -150,6 +150,12 @@
     set splitbelow
     set splitright
 
+    " Folding
+    augroup FoldJavaScript
+        autocmd!
+        autocmd BufRead,BufNewFile /Users/slim/git/notion-next/src/test/**/*.ts setlocal foldmethod=syntax foldlevel=1 foldnestmax=2
+    augroup END
+
     " Tab bar
     set showtabline=2
 
