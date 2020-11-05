@@ -12,8 +12,8 @@ cmd + ctrl - f : yabai -m window --toggle float
 cmd + ctrl - r : yabai -m space --rotate 270
 
 # flip axes
-cmd + ctrl - x : yabai -m space --mirror y-axis
-cmd + ctrl - y : yabai -m space --mirror x-axis
+cmd + ctrl - y : yabai -m space --mirror y-axis
+cmd + ctrl - x : yabai -m space --mirror x-axis
 
 # resize
 cmd + ctrl + shift - space : yabai -m space --balance
